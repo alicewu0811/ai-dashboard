@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>So sánh gói dịch vụ AI Cloud</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root {
+  --ink: #111827;
+  --ink-secondary: #374151;
+  --ink-muted: #6B7280;
+  --surface: #F5F6FA;
+  --surface-card: #FFFFFF;
+  --surface-elevated: #FFFFFF;
+  --border: #E2E5ED;
+  --border-subtle: #EDF0F5;
+
+  --plan-native: #2563EB;
+  --plan-native-bg: #EFF6FF;
+  --plan-native-border: #BFDBFE;
+  --plan-tokenking: #7C3AED;
+  --plan-tokenking-bg: #F5F3FF;
+  --plan-tokenking-border: #DDD6FE;
+  --plan-ant: #B45309;
+  --plan-ant-bg: #FFFBEB;
+  --plan-ant-border: #FDE68A;
+
+  --good: #15803D;
+  --good-bg: #DCFCE7;
+  --caution: #A16207;
+  --caution-bg: #FEF9C3;
+  --risk: #B91C1C;
+  --risk-bg: #FEE2E2;
+
+  --radius: 10px;
+  --radius-sm: 6px;
+  --gap: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #E8ECF1;
+    --ink-secondary: #A0AEC0;
+    --ink-muted: #6B7A8D;
+    --surface: #0F1219;
+    --surface-card: #1A1F2E;
+    --surface-elevated: #232838;
+    --border: #2D3548;
+    --border-subtle: #252B3B;
+
+    --plan-native-bg: #1E2A4A;
+    --plan-native-border: #2563EB44;
+    --plan-tokenking-bg: #2A1F4A;
+    --plan-tokenking-border: #7C3AED44;
+    --plan-ant-bg: #2E2516;
+    --plan-ant-border: #B4530944;
+
+    --good-bg: #0D2818;
+    --caution-bg: #2A2308;
+    --risk-bg: #2D1010;
+  }
+}
+:root[data-theme="dark"] {
+  --ink: #E8ECF1;
+  --ink-secondary: #A0AEC0;
+  --ink-muted: #6B7A8D;
+  --surface: #0F1219;
+  --surface-card: #1A1F2E;
+  --surface-elevated: #232838;
+  --border: #2D3548;
+  --border-subtle: #252B3B;
+
+  --plan-native-bg: #1E2A4A;
+  --plan-native-border: #2563EB44;
+  --plan-tokenking-bg: #2A1F4A;
+  --plan-tokenking-border: #7C3AED44;
+  --plan-ant-bg: #2E2516;
+  --plan-ant-border: #B4530944;
+
+  --good-bg: #0D2818;
+  --caution-bg: #2A2308;
+  --risk-bg: #2D1010;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--surface);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  font-variant-numeric: tabular-nums;
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* Header */
+.page-header {
+  margin-bottom: 36px;
+}
+.page-header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  margin-bottom: 6px;
+}
+.page-header .subtitle {
+  font-size: 14px;
+  color: var(--ink-muted);
+  font-weight: 400;
+}
+.page-header .date {
+  font-size: 12px;
+  color: var(--ink-muted);
+  margin-top: 4px;
+}
+
+/* Plan Cards */
+.plan-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+  margin-bottom: 32px;
+}
+
+.plan-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+.plan-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+.plan-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+.plan-card.native::before { background: var(--plan-native); }
+.plan-card.tokenking::before { background: var(--plan-tokenking); }
+.plan-card.ant::before { background: var(--plan-ant); }
+
+.plan-card .plan-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.plan-card.native .plan-label { color: var(--plan-native); }
+.plan-card.tokenking .plan-label { color: var(--plan-tokenking); }
+.plan-card.ant .plan-label { color: var(--plan-ant); }
+
+.plan-card .plan-name {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+.plan-card .plan-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.plan-card .meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  padding: 2px 0;
+}
+.meta-row .meta-label {
+  color: var(--ink-secondary);
+  font-weight: 500;
+}
+.meta-row .meta-value {
+  font-weight: 600;
+  font-size: 13px;
+  text-align: right;
+}
+
+.risk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.risk-badge.high {
+  background: var(--risk-bg);
+  color: var(--risk);
+}
+.risk-badge.medium {
+  background: var(--caution-bg);
+  color: var(--caution);
+}
+.risk-badge.low {
+  background: var(--good-bg);
+  color: var(--good);
+}
+
+/* Section */
+.section {
+  margin-bottom: 32px;
+}
+.section-title {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Risk Alert */
+.risk-alert {
+  background: var(--risk-bg);
+  border: 1px solid var(--risk);
+  border-left: 4px solid var(--risk);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  margin-bottom: 32px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.risk-alert strong {
+  color: var(--risk);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+.risk-alert span {
+  color: var(--ink);
+}
+
+/* Comparison Matrix */
+.matrix {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.matrix-header {
+  display: grid;
+  grid-template-columns: 180px 1fr 1fr 1fr;
+  border-bottom: 2px solid var(--border);
+  background: var(--surface-elevated);
+}
+.matrix-header .cell {
+  padding: 16px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--ink-secondary);
+}
+.matrix-header .cell:not(:first-child) {
+  text-align: center;
+}
+.matrix-header .cell.h-native { color: var(--plan-native); }
+.matrix-header .cell.h-tokenking { color: var(--plan-tokenking); }
+.matrix-header .cell.h-ant { color: var(--plan-ant); }
+
+.matrix-row {
+  display: grid;
+  grid-template-columns: 180px 1fr 1fr 1fr;
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background 0.15s;
+}
+.matrix-row:last-child { border-bottom: none; }
+
+.matrix-row .cell {
+  padding: 16px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+.matrix-row .cell:not(:first-child) {
+  justify-content: center;
+  text-align: center;
+}
+
+.matrix-row .dim-label {
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.dim-tag {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+.dim-tag.price { background: #DBEAFE; color: #1E40AF; }
+.dim-tag.risk { background: #FEE2E2; color: #991B1B; }
+.dim-tag.tech { background: #F3E8FF; color: #6B21A8; }
+.dim-tag.support { background: #D1FAE5; color: #065F46; }
+.dim-tag.special { background: #FCE7F3; color: #9D174D; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .dim-tag.price { background: #1E3A5F; color: #93C5FD; }
+  :root:not([data-theme="light"]) .dim-tag.risk { background: #4C1515; color: #FCA5A5; }
+  :root:not([data-theme="light"]) .dim-tag.tech { background: #3B1764; color: #D8B4FE; }
+  :root:not([data-theme="light"]) .dim-tag.support { background: #064E3B; color: #6EE7B7; }
+  :root:not([data-theme="light"]) .dim-tag.special { background: #5B1340; color: #F9A8D4; }
+}
+:root[data-theme="dark"] .dim-tag.price { background: #1E3A5F; color: #93C5FD; }
+:root[data-theme="dark"] .dim-tag.risk { background: #4C1515; color: #FCA5A5; }
+:root[data-theme="dark"] .dim-tag.tech { background: #3B1764; color: #D8B4FE; }
+:root[data-theme="dark"] .dim-tag.support { background: #064E3B; color: #6EE7B7; }
+:root[data-theme="dark"] .dim-tag.special { background: #5B1340; color: #F9A8D4; }
+
+/* Score indicators */
+.score {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
+}
+.score-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.score-icon.good { background: var(--good-bg); color: var(--good); }
+.score-icon.caution { background: var(--caution-bg); color: var(--caution); }
+.score-icon.bad { background: var(--risk-bg); color: var(--risk); }
+.score-icon.neutral { background: var(--surface); color: var(--ink-muted); border: 1px solid var(--border); }
+
+/* Detail panel */
+.detail-panel {
+  display: block;
+  grid-column: 1 / -1;
+  padding: 0 16px 16px;
+}
+.detail-inner {
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+.detail-col h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+.detail-col p {
+  font-size: 13px;
+  color: var(--ink-secondary);
+  line-height: 1.7;
+}
+
+/* Radar chart */
+.radar-section {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: var(--gap);
+  align-items: start;
+}
+
+.radar-wrap {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.legend-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+.legend-card h3 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.legend-item:last-child { border-bottom: none; }
+.legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.legend-text {
+  font-size: 13px;
+  font-weight: 500;
+}
+.legend-sub {
+  font-size: 11px;
+  color: var(--ink-muted);
+  margin-top: 2px;
+}
+
+/* Recommendation */
+.rec-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+}
+.rec-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.rec-card h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.rec-card .rec-for {
+  font-size: 13px;
+  color: var(--ink-secondary);
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.rec-card ul {
+  list-style: none;
+  padding: 0;
+}
+.rec-card li {
+  font-size: 13px;
+  color: var(--ink-secondary);
+  padding: 4px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  line-height: 1.5;
+}
+.rec-card li::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--ink-muted);
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+.rec-card.native { border-top: 3px solid var(--plan-native); }
+.rec-card.tokenking { border-top: 3px solid var(--plan-tokenking); }
+.rec-card.ant { border-top: 3px solid var(--plan-ant); }
+
+/* Footer */
+.page-footer {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--ink-secondary);
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* Filter tabs */
+.filter-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.filter-tab {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background: var(--surface-card);
+  color: var(--ink-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.filter-tab:hover {
+  border-color: var(--ink-muted);
+}
+.filter-tab.active {
+  background: var(--ink);
+  color: var(--surface-card);
+  border-color: var(--ink);
+}
+
+/* Pricing section */
+.pricing-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap);
+  margin-bottom: 20px;
+}
+.pricing-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.pricing-card.anthropic::before { background: #E04D01; }
+.pricing-card.openai::before { background: #10A37F; }
+.pricing-card.google::before { background: #4285F4; }
+
+.pricing-sub-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  margin-top: 24px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+}
+.pricing-sub-title:first-child { margin-top: 0; }
+
+.pricing-cards-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+  margin-bottom: 20px;
+}
+
+.pricing-card .vendor-name {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.pricing-card .vendor-discount {
+  font-size: 12px;
+  color: var(--ink-secondary);
+  margin-bottom: 16px;
+}
+.pricing-model {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 13px;
+}
+.pricing-model:last-child { border-bottom: none; }
+.pricing-model .model-name {
+  font-weight: 600;
+  color: var(--ink);
+}
+.pricing-model .model-price {
+  font-weight: 600;
+  color: var(--ink);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.pricing-model .model-price span {
+  display: block;
+  font-size: 11px;
+  color: var(--ink-muted);
+}
+
+.pricing-detail-toggle {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 20px;
+  width: 100%;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-secondary);
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.15s;
+  font-family: inherit;
+}
+.pricing-detail-toggle:hover {
+  background: var(--surface);
+}
+
+.pricing-full-table {
+  display: none;
+  margin-top: 16px;
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.pricing-full-table.open { display: block; }
+.pricing-full-table { overflow-x: auto; }
+
+.pricing-full-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.pricing-full-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-muted);
+  letter-spacing: 0.04em;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  cursor: default;
+}
+.pricing-full-table th:hover { background: var(--surface); }
+.pricing-full-table th::after { display: none; }
+.pricing-full-table td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  font-variant-numeric: tabular-nums;
+}
+.pricing-full-table tr:last-child td { border-bottom: none; }
+.pricing-full-table .vendor-label {
+  font-weight: 600;
+  font-size: 12px;
+  padding: 8px 16px;
+  background: var(--surface);
+  color: var(--ink-muted);
+  letter-spacing: 0.03em;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .plan-cards { grid-template-columns: 1fr; }
+  .matrix-header, .matrix-row { grid-template-columns: 120px 1fr 1fr 1fr; }
+  .radar-section { grid-template-columns: 1fr; }
+  .rec-cards { grid-template-columns: 1fr; }
+  .detail-inner { grid-template-columns: 1fr; }
+  .pricing-cards { grid-template-columns: 1fr; }
+  .pricing-cards-3 { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .page { padding: 24px 16px 60px; }
+  .page-header h1 { font-size: 22px; }
+  .matrix-header, .matrix-row { grid-template-columns: 100px 1fr 1fr 1fr; }
+  .matrix-row .cell { padding: 12px 8px; font-size: 12px; }
+  .score { font-size: 0; gap: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header class="page-header">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div>
+        <h1>So sánh gói dịch vụ AI Cloud</h1>
+        <div class="subtitle">Gói A: Tài khoản chính thức (AWS / GCP) vs Gói B: AI Token King (Tài khoản gốc) vs Gói C: AI Token King Nền tảng tổng hợp Ant (Tài khoản không gốc)</div>
+        <div class="date">Cập nhật lần cuối: 2026-08-28</div>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <a href="index.html" style="font-size:13px;font-weight:600;color:var(--ink-muted);text-decoration:none;border:1px solid var(--border);padding:5px 14px;border-radius:20px;white-space:nowrap;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--ink-secondary)';this.style.color='var(--ink)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--ink-muted)'">中文</a>
+        <a href="en.html" style="font-size:13px;font-weight:600;color:var(--ink-muted);text-decoration:none;border:1px solid var(--border);padding:5px 14px;border-radius:20px;white-space:nowrap;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--ink-secondary)';this.style.color='var(--ink)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--ink-muted)'">EN</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Cảnh báo rủi ro -->
+  <div class="risk-alert">
+    <strong>Gói tài khoản chính thức không hoàn tiền</strong>
+    <span>Nếu tài khoản bị nhà cung cấp đình chỉ (ví dụ: do phát hiện hoạt động chưng cất), sẽ không được hoàn tiền sau đó. Các gói nền tảng (AI Token King Tài khoản gốc và AI Token King Nền tảng tổng hợp Ant Tài khoản không gốc) cho phép trao đổi hoặc thay thế tài nguyên, đảm bảo sử dụng hết tín dụng đã trả trước.</span>
+  </div>
+
+  <!-- Thẻ tóm tắt gói dịch vụ -->
+  <div class="plan-cards">
+    <div class="plan-card native">
+      <div class="plan-label">Gói A</div>
+      <div class="plan-name">Tài khoản chính thức</div>
+      <div class="plan-meta">
+        <div class="meta-row">
+          <span class="meta-label">Sản phẩm</span>
+          <span class="meta-value">AWS / GCP</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Chiết khấu</span>
+          <span class="meta-value">Anthropic 95%–85% / OpenAI 85%–75% giá niêm yết</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Thanh toán</span>
+          <span class="meta-value">Trả trước</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Rủi ro bị khóa</span>
+          <span class="risk-badge high">Cao</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Quản lý tài khoản</span>
+          <span class="meta-value">Tự quản lý</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-card tokenking">
+      <div class="plan-label">Gói B</div>
+      <div class="plan-name">AI Token King (Tài khoản gốc)</div>
+      <div class="plan-meta">
+        <div class="meta-row">
+          <span class="meta-label">Nền tảng</span>
+          <span class="meta-value">Tổng hợp nền tảng</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Chiết khấu</span>
+          <span class="meta-value">Anthropic 92% / OpenAI từ 94% giá niêm yết</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Thanh toán</span>
+          <span class="meta-value">Trả trước, từ $5</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Rủi ro bị khóa</span>
+          <span class="risk-badge medium">Có thể trao đổi</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Quản lý tài khoản</span>
+          <span class="meta-value">Nền tảng quản lý</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-card ant">
+      <div class="plan-label">Gói C</div>
+      <div class="plan-name">AI Token King Nền tảng tổng hợp Ant<span style="font-size:13px;font-weight:500;color:var(--ink-muted);margin-left:6px;">(Tài khoản không gốc)</span></div>
+      <div class="plan-meta">
+        <div class="meta-row">
+          <span class="meta-label">Nền tảng</span>
+          <span class="meta-value">Tổng hợp bên thứ ba</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Chiết khấu</span>
+          <span class="meta-value">Anthropic 92% / OpenAI 90% giá niêm yết</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Thanh toán</span>
+          <span class="meta-value">Trả trước</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Rủi ro bị khóa</span>
+          <span class="risk-badge medium">Có thể thay thế</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Quản lý tài khoản</span>
+          <span class="meta-value">Nền tảng quản lý</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ma trận so sánh -->
+  <div class="section">
+    <div class="section-title">
+      <span class="dot" style="background: var(--ink)"></span>
+      Ma trận so sánh đa chiều
+    </div>
+
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-filter="all">Tất cả</button>
+      <button class="filter-tab" data-filter="price">Giá</button>
+      <button class="filter-tab" data-filter="risk">Rủi ro</button>
+      <button class="filter-tab" data-filter="tech">Kỹ thuật</button>
+      <button class="filter-tab" data-filter="support">Dịch vụ</button>
+    </div>
+
+    <div class="matrix" id="matrix">
+      <div class="matrix-header">
+        <div class="cell">Chiều so sánh</div>
+        <div class="cell h-native">Tài khoản chính thức<br><span style="font-weight:400;font-size:10px;opacity:0.7">AWS / GCP</span></div>
+        <div class="cell h-tokenking">AI Token King<br><span style="font-weight:400;font-size:10px;opacity:0.7">Tài khoản gốc</span></div>
+        <div class="cell h-ant">AI Token King Nền tảng tổng hợp Ant<br><span style="font-weight:400;font-size:10px;opacity:0.7">Tài khoản không gốc</span></div>
+      </div>
+
+      <div class="matrix-row" data-cat="price" data-idx="0">
+        <div class="cell"><span class="dim-label"><span class="dim-tag price">GIÁ</span>Mức chiết khấu</span></div>
+        <div class="cell"><span class="score"><span class="score-icon caution">!</span> Trung bình</span></div>
+        <div class="cell"><span class="score"><span class="score-icon good">&#10003;</span> Tốt nhất</span></div>
+        <div class="cell"><span class="score"><span class="score-icon good">&#10003;</span> Tốt</span></div>
+      </div>
+      <div class="detail-panel" data-detail="0">
+        <div class="detail-inner">
+          <div class="detail-col"><h4>Tài khoản chính thức</h4><p>Anthropic 95%–85% giá niêm yết, OpenAI 85%–75% giá niêm yết, Gemini 95%–85% giá niêm yết. Chiết khấu tăng theo mức sử dụng hàng tháng (28k / 28k–70k / 70k+ USD).</p></div>
+          <div class="detail-col"><h4>AI Token King (Tài khoản gốc)</h4><p>Anthropic 92% giá niêm yết, OpenAI từ 94% giá niêm yết (83% cho phiên bản 5.4 trở xuống), Google 83% giá niêm yết. Tổng hợp nền tảng giúp có giá tốt hơn.</p></div>
+          <div class="detail-col"><h4>AI Token King Nền tảng tổng hợp Ant (Tài khoản không gốc)</h4><p>Anthropic 92% giá niêm yết, OpenAI 90% giá niêm yết. Chiết khấu nền tảng được cung cấp theo thỏa thuận; giá cụ thể tùy thuộc điều khoản hợp đồng.</p></div>
+        </div>
+      </div>
+
+      <div class="matrix-row" data-cat="risk" data-idx="1">
+        <div class="cell"><span class="dim-label"><span class="dim-tag risk">RỦI RO</span>Rủi ro khóa &amp; chưng cất</span></div>
+        <div class="cell"><span class="score"><span class="score-icon bad">&#10005;</span> Không hoàn tiền</span></div>
+        <div class="cell"><span class="score"><span class="score-icon caution">&#8635;</span> Có thể trao đổi</span></div>
+        <div class="cell"><span class="score"><span class="score-icon caution">&#8635;</span> Có thể thay thế</span></div>
+      </div>
+      <div class="detail-panel" data-detail="1">
+        <div class="detail-inner">
+          <div class="detail-col"><h4>Tài khoản chính thức</h4><p>Nếu nhà cung cấp phát hiện hoạt động chưng cất, tài khoản sẽ bị đình chỉ ngay lập tức và không được hoàn tiền. Phải cung cấp bằng chứng đình chỉ. Đây là mức rủi ro cao nhất.</p></div>
+          <div class="detail-col"><h4>AI Token King (Tài khoản gốc)</h4><p>Nếu phát hiện chưng cất hoặc vi phạm chính sách, tài nguyên có thể được trao đổi và sử dụng cho đến khi hết, hạn chế tổn thất.</p></div>
+          <div class="detail-col"><h4>AI Token King Nền tảng tổng hợp Ant (Tài khoản không gốc)</h4><p>Nếu bị đình chỉ hoặc bị gắn cờ vi phạm, nền tảng có thể thay thế tài nguyên, đảm bảo sử dụng đầy đủ và tạo vùng đệm.</p></div>
+        </div>
+      </div>
+
+      <div class="matrix-row" data-cat="support" data-idx="2">
+        <div class="cell"><span class="dim-label"><span class="dim-tag support">THANH TOÁN</span>Phương thức thanh toán</span></div>
+        <div class="cell"><span class="score"><span class="score-icon good">&#10003;</span> Trả trước</span></div>
+        <div class="cell"><span class="score"><span class="score-icon good">&#10003;</span> Trả trước</span></div>
+        <div class="cell"><span class="score"><span class="score-icon good">&#10003;</span> Trả trước</span></div>
+      </div>
+      <div class="detail-panel" data-detail="2">
+        <div class="detail-inner">
+          <div class="detail-col"><h4>Tài khoản chính thức</h4><p>Hệ thống nạp tiền trước; nạp trước rồi mới sử dụng.</p></div>
+          <div class="detail-col"><h4>AI Token King (Tài khoản gốc)</h4><p>Hệ thống nạp tiền trước; bắt đầu chỉ từ $5, rào cản gia nhập cực thấp.</p></div>
+          <div class="detail-col"><h4>AI Token King Nền tảng tổng hợp Ant (Tài khoản không gốc)</h4><p>Hệ thống nạp tiền trước; nạp theo nhu cầu.</p></div>
+        </div>
+      </div>
+
+      <div class="matrix-row" data-cat="tech" data-idx="3">
+        <div class="cell"><span class="dim-label"><span class="dim-tag tech">MẠNG</span>Tối ưu tuyến đường</span></div>
+        <div class="cell"><span class="score"><span class="score-icon bad">&#10005;</span> Không có</span></div>
+        <div class="cell"><span class="score"><span class="score-icon good">&#10003;</span> Đã tối ưu</span></div>
+        <div class="cell"><span class="score"><span class="score-icon good">&#10003;</span> Đã tối ưu</span></div>
+      </div>
+      <div class="detail-panel" data-detail="3">
+        <div class="detail-inner">
+          <div class="detail-col"><h4>Tài khoản chính thức</h4><p>Không thể hoán đổi tài khoản; khách hàng phải tự thiết lập tuyến mạng, tốn thêm chi phí và phức tạp kỹ thuật.</p></div>
+          <div class="detail-col"><h4>AI Token King (Tài khoản gốc)</h4><p>Sử dụng Alibaba Cloud + Tencent Cloud; các tuyến cơ bản đã được tối ưu hoàn toàn.</p></div>
+          <div class="detail-col"><h4>AI Token King Nền tảng tổng hợp Ant (Tài khoản không gốc)</h4><p>Ant Cloud / Alibaba Cloud nội địa với tối ưu điểm biên, lý tưởng cho người dùng trong khu vực.</p></div>
+        </div>
+      </div>
+
+      <div class="matrix-row" data-cat="support" data-idx="4">
+        <div class="cell"><span class="dim-label"><span class="dim-tag support">DỮ LIỆU</span>Đối soát</span></div>
+        <div class="cell"><span class="score"><span class="score-icon neutral">&#8212;</span> Tự phục vụ</span></div>
+        <div class="cell"><span class="score"><span class="score-icon good">&#10003;</span> Thời gian thực</span></div>
+        <div class="cell"><span class="score"><span class="score-icon neutral">&#8212;</span> Định kỳ</span></div>
+      </div>
+      <div class="detail-panel" data-detail="4">
+        <div class="detail-inner">
+          <div class="detail-col"><h4>Tài khoản chính thức</h4><p>Chỉ có truy vấn tự phục vụ; giới hạn xem Explorer / Billing Explorer cho tài khoản đó.</p></div>
+          <div class="detail-col"><h4>AI Token King (Tài khoản gốc)</h4><p>Thanh toán thời gian thực với thông tin chi tiết; bắt đầu từ $5/$10, hỗ trợ thử nghiệm quy mô nhỏ.</p></div>
+          <div class="detail-col"><h4>AI Token King Nền tảng tổng hợp Ant (Tài khoản không gốc)</h4><p>Cơ chế thanh toán nền tảng với bảng quyết toán định kỳ.</p></div>
+        </div>
+      </div>
+
+      <div class="matrix-row" data-cat="tech" data-idx="5">
+        <div class="cell"><span class="dim-label"><span class="dim-tag tech">KIỂM SOÁT</span>Quyền sở hữu tài khoản</span></div>
+        <div class="cell"><span class="score"><span class="score-icon good">&#10003;</span> Tự sở hữu</span></div>
+        <div class="cell"><span class="score"><span class="score-icon caution">!</span> Được quản lý</span></div>
+        <div class="cell"><span class="score"><span class="score-icon caution">!</span> Được quản lý</span></div>
+      </div>
+      <div class="detail-panel" data-detail="5">
+        <div class="detail-inner">
+          <div class="detail-col"><h4>Tài khoản chính thức</h4><p>Liên kết với Payer ID của nhà cung cấp; hoàn toàn tùy chỉnh với toàn quyền kiểm soát tài khoản.</p></div>
+          <div class="detail-col"><h4>AI Token King (Tài khoản gốc)</h4><p>Do AI Token King quản lý trên nền tảng; không thể hoán đổi độc lập.</p></div>
+          <div class="detail-col"><h4>AI Token King Nền tảng tổng hợp Ant (Tài khoản không gốc)</h4><p>Do nền tảng tổng hợp Ant quản lý; không thể điều chỉnh độc lập.</p></div>
+        </div>
+      </div>
+
+      <div class="matrix-row" data-cat="special" data-idx="6">
+        <div class="cell"><span class="dim-label"><span class="dim-tag special">ĐẶC BIỆT</span>Mô hình không chiết khấu</span></div>
+        <div class="cell"><span class="score"><span class="score-icon neutral">&#8212;</span> Chờ xác nhận</span></div>
+        <div class="cell"><span class="score"><span class="score-icon neutral">&#8212;</span> Chờ xác nhận</span></div>
+        <div class="cell"><span class="score"><span class="score-icon neutral">&#8212;</span> Chờ xác nhận</span></div>
+      </div>
+      <div class="detail-panel" data-detail="6">
+        <div class="detail-inner">
+          <div class="detail-col"><h4>Tài khoản chính thức</h4><p>Một số mô hình (ví dụ: Claude 2.5) không có chiết khấu toàn cầu và được cung cấp theo giá niêm yết. Danh sách đầy đủ sẽ được xác nhận.</p></div>
+          <div class="detail-col"><h4>AI Token King (Tài khoản gốc)</h4><p>Tương tự; một số mô hình không có chiết khấu. Sẽ được xác nhận.</p></div>
+          <div class="detail-col"><h4>AI Token King Nền tảng tổng hợp Ant (Tài khoản không gốc)</h4><p>Tương tự; một số mô hình không có chiết khấu. Sẽ được xác nhận.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Đề xuất kịch bản sử dụng -->
+  <div class="section">
+    <div class="section-title">
+      <span class="dot" style="background: var(--good)"></span>
+      Đề xuất kịch bản sử dụng
+    </div>
+    <div class="rec-cards">
+      <div class="rec-card native">
+        <h4>Tài khoản chính thức</h4>
+        <div class="rec-for">Phù hợp nhất cho đội ngũ cần toàn quyền kiểm soát</div>
+        <ul>
+          <li>Không có yêu cầu đặc biệt về chất lượng tuyến đường</li>
+          <li>Cần toàn quyền kiểm soát và tùy chỉnh tài khoản</li>
+          <li>Các kịch bản xác thực quy mô nhỏ</li>
+          <li>Khách hàng sử dụng lâu dài, ổn định</li>
+          <li>Có thể chấp nhận rủi ro không hoàn tiền khi bị đình chỉ</li>
+        </ul>
+      </div>
+      <div class="rec-card tokenking">
+        <h4>AI Token King (Tài khoản gốc)</h4>
+        <div class="rec-for">Phù hợp nhất cho đội ngũ tìm kiếm giá trị</div>
+        <ul>
+          <li>Cần mức chiết khấu sâu nhất</li>
+          <li>Muốn bắt đầu thử nghiệm nhanh (từ $5)</li>
+          <li>Cần thanh toán thời gian thực và hóa đơn minh bạch</li>
+          <li>Cần tối ưu mạng khu vực</li>
+          <li>Muốn giảm thiểu tổn thất liên quan đến đình chỉ</li>
+        </ul>
+      </div>
+      <div class="rec-card ant">
+        <h4>AI Token King Nền tảng tổng hợp Ant (Tài khoản không gốc)</h4>
+        <div class="rec-for">Nền tảng tổng hợp Ant của AI Token King</div>
+        <ul>
+          <li>Cần dịch vụ nền tảng tổng hợp bên thứ ba</li>
+          <li>Cần lịch trình tài nguyên linh hoạt</li>
+          <li>Tìm kiếm sự ổn định hợp tác lâu dài</li>
+          <li>Cần tối ưu tuyến đường điểm biên nội địa</li>
+          <li>Muốn thay thế tài nguyên nếu tài khoản bị đình chỉ</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quy trình -->
+  <div class="section">
+    <div class="section-title">
+      <span class="dot" style="background: var(--caution)"></span>
+      Quy trình đề xuất
+    </div>
+    <div style="background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; display: flex; align-items: center; gap: 0; flex-wrap: wrap; justify-content: center;">
+      <div style="text-align: center; padding: 12px 20px;">
+        <div style="font-size: 24px; margin-bottom: 4px;">1</div>
+        <div style="font-size: 13px; font-weight: 600;">Thử nghiệm nhỏ</div>
+        <div style="font-size: 11px; color: var(--ink-muted);">Xác nhận tính khả thi của gói</div>
+      </div>
+      <div style="color: var(--ink-muted); font-size: 20px; padding: 0 4px;">&#8594;</div>
+      <div style="text-align: center; padding: 12px 20px;">
+        <div style="font-size: 24px; margin-bottom: 4px;">2</div>
+        <div style="font-size: 13px; font-weight: 600;">Xác nhận lựa chọn</div>
+        <div style="font-size: 11px; color: var(--ink-muted);">Đánh giá kết quả và quyết định</div>
+      </div>
+      <div style="color: var(--ink-muted); font-size: 20px; padding: 0 4px;">&#8594;</div>
+      <div style="text-align: center; padding: 12px 20px;">
+        <div style="font-size: 24px; margin-bottom: 4px;">3</div>
+        <div style="font-size: 13px; font-weight: 600;">Thử nghiệm trung bình</div>
+        <div style="font-size: 11px; color: var(--ink-muted);">Mở rộng quy mô sử dụng</div>
+      </div>
+      <div style="color: var(--ink-muted); font-size: 20px; padding: 0 4px;">&#8594;</div>
+      <div style="text-align: center; padding: 12px 20px;">
+        <div style="font-size: 24px; margin-bottom: 4px;">4</div>
+        <div style="font-size: 13px; font-weight: 600;">Triển khai toàn diện</div>
+        <div style="font-size: 11px; color: var(--ink-muted);">Vận hành quy mô lớn</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Báo giá -->
+  <div class="section">
+    <div class="section-title">
+      <span class="dot" style="background: var(--accent, #4F46E5)"></span>
+      Báo giá khách hàng
+    </div>
+
+    <!-- Gói A Tài khoản chính thức -->
+    <div class="pricing-sub-title">Gói A &#8212; Tài khoản chính thức</div>
+    <div class="pricing-cards-3">
+      <div class="pricing-card anthropic">
+        <div class="vendor-name">Anthropic (Claude)</div>
+        <div class="vendor-discount">Chiết khấu theo mức sử dụng hàng tháng (USD)</div>
+        <div class="pricing-model">
+          <div class="model-name">Dưới 28k</div>
+          <div class="model-price">95% giá niêm yết</div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">28k–70k</div>
+          <div class="model-price">90% giá niêm yết</div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">Trên 70k</div>
+          <div class="model-price">85% giá niêm yết</div>
+        </div>
+      </div>
+      <div class="pricing-card openai">
+        <div class="vendor-name">OpenAI (GPT)</div>
+        <div class="vendor-discount">Chiết khấu theo mức sử dụng hàng tháng (USD)</div>
+        <div class="pricing-model">
+          <div class="model-name">Dưới 28k</div>
+          <div class="model-price">85% giá niêm yết</div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">28k–70k</div>
+          <div class="model-price">80% giá niêm yết</div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">Trên 70k</div>
+          <div class="model-price">75% giá niêm yết</div>
+        </div>
+      </div>
+      <div class="pricing-card google">
+        <div class="vendor-name">Gemini</div>
+        <div class="vendor-discount">Chiết khấu theo mức sử dụng hàng tháng (USD)</div>
+        <div class="pricing-model">
+          <div class="model-name">Dưới 28k</div>
+          <div class="model-price">95% giá niêm yết</div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">28k–70k</div>
+          <div class="model-price">90% giá niêm yết</div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">Trên 70k</div>
+          <div class="model-price">85% giá niêm yết</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="pricing-detail-toggle" onclick="document.getElementById('fullPricingA').classList.toggle('open'); this.textContent = document.getElementById('fullPricingA').classList.contains('open') ? 'Thu gọn chi tiết đầy đủ Tài khoản chính thức' : 'Mở rộng chi tiết đầy đủ Tài khoản chính thức';">Mở rộng chi tiết đầy đủ Tài khoản chính thức</button>
+
+    <div class="pricing-full-table" id="fullPricingA">
+      <table>
+        <thead>
+          <tr>
+            <th>Thương hiệu / Mô hình</th>
+            <th>Mức thấp</th>
+            <th>Mức trung bình</th>
+            <th>Mức cao</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="4" class="vendor-label">Mô hình văn bản &#8212; Sử dụng hàng tháng: Dưới 28k / 28k&#8211;70k / Trên 70k (USD)</td></tr>
+          <tr><td>Claude Series</td><td>95%</td><td>90%</td><td>85%</td></tr>
+          <tr><td>GPT Series</td><td>85%</td><td>80%</td><td>75%</td></tr>
+          <tr><td>Gemini Series</td><td>95%</td><td>90%</td><td>85%</td></tr>
+          <tr><td>Grok</td><td>70%</td><td>65%</td><td>60%</td></tr>
+          <tr><td>Tongyi Qwen Series</td><td>90%</td><td>85%</td><td>80%</td></tr>
+
+          <tr><td colspan="4" class="vendor-label">Mô hình văn bản &#8212; Sử dụng hàng tháng: Dưới 200k / 200k&#8211;500k / Trên 500k (USD)</td></tr>
+          <tr><td>Doubao-Seed-2.1-pro/turbo</td><td>85%</td><td>80%</td><td>75%</td></tr>
+          <tr><td>Doubao-Seed-2.0 Series</td><td>90%</td><td>85%</td><td>80%</td></tr>
+          <tr><td>Kimi-K3 (Chính thức)</td><td>98%</td><td>100%</td><td>100%</td></tr>
+          <tr><td>Kimi-K2.7 (Nhà cung cấp đám mây)</td><td>90%</td><td>85%</td><td>80%</td></tr>
+          <tr><td>Kimi-K2.6 (Nhà cung cấp đám mây)</td><td>80%</td><td>75%</td><td>70%</td></tr>
+          <tr><td>Kimi-K2.5 (Nhà cung cấp đám mây)</td><td>75%</td><td>70%</td><td>65%</td></tr>
+          <tr><td>GLM 5.3 (Chính thức)</td><td>80%</td><td>80%</td><td>75%</td></tr>
+          <tr><td>GLM 5.3 (Nhà cung cấp đám mây)</td><td>98%</td><td>100%</td><td>97%</td></tr>
+          <tr><td>GLM 5.2 (Nhà cung cấp đám mây)</td><td>70%</td><td>65%</td><td>60%</td></tr>
+          <tr><td>GLM 5.1 (Nhà cung cấp đám mây)</td><td>80%</td><td>75%</td><td>70%</td></tr>
+          <tr><td>GLM 5 (Nhà cung cấp đám mây)</td><td>70%</td><td>65%</td><td>60%</td></tr>
+          <tr><td>GLM-5V-Turbo (Chính thức)</td><td>95%</td><td>90%</td><td>85%</td></tr>
+          <tr><td>DeepSeek V4 Pro/Flash (Nhà cung cấp đám mây)</td><td>85%</td><td>80%</td><td>75%</td></tr>
+          <tr><td>DeepSeek V3.2 (Nhà cung cấp đám mây)</td><td>70%</td><td>65%</td><td>60%</td></tr>
+          <tr><td>MiniMax-M3 / M2.7 (Chính thức)</td><td>75%</td><td>70%</td><td>65%</td></tr>
+          <tr><td>MiniMax-M2.5 (Chính thức)</td><td>75%</td><td>75%</td><td>70%</td></tr>
+
+          <tr><td colspan="4" class="vendor-label">Mô hình hình ảnh &#8212; Sử dụng hàng tháng: Dưới 28k / 28k&#8211;70k / Trên 70k (USD)</td></tr>
+          <tr><td>GPT-image Series</td><td>60%</td><td>55%</td><td>50%</td></tr>
+          <tr><td>Doubao-Seedream Series</td><td>100%</td><td>100%</td><td>95%</td></tr>
+          <tr><td>Nano-Banana Series</td><td>60%</td><td>55%</td><td>50%</td></tr>
+
+          <tr><td colspan="4" class="vendor-label">Mô hình video &#8212; Sử dụng hàng tháng: Dưới 28k / 28k&#8211;70k / Trên 70k (USD)</td></tr>
+          <tr><td>Wanx Video Series</td><td>80%</td><td>75%</td><td>70%</td></tr>
+          <tr><td>Google Veo Series</td><td>100%</td><td>95%</td><td>90%</td></tr>
+          <tr><td>Vidu Video Series</td><td>80%</td><td>75%</td><td>70%</td></tr>
+          <tr><td>Kling Video Series</td><td>80%</td><td>75%</td><td>70%</td></tr>
+
+          <tr><td colspan="4" class="vendor-label">Mô hình video &#8212; Sử dụng hàng tháng: Dưới 200k / 200k&#8211;500k / Trên 500k (USD)</td></tr>
+          <tr><td>Seedance 2.5 (Yêu cầu trả trước)</td><td>98%</td><td>96%</td><td>94%</td></tr>
+          <tr><td>Seedance 2.0 (Yêu cầu trả trước)</td><td>98%</td><td>95%</td><td>93%</td></tr>
+          <tr><td>Seedance 2.0 Fast (Có thể trả sau)</td><td>95%</td><td>90%</td><td>85%</td></tr>
+          <tr><td>Seedance 2.0 Mini (Có thể trả sau)</td><td>65%</td><td>60%</td><td>55%</td></tr>
+
+          <tr><td colspan="4" class="vendor-label">Mô hình đảo ngược &#8212; Sử dụng hàng tháng: Dưới 14k / 14k&#8211;42k / Trên 42k (USD)</td></tr>
+          <tr><td>Claude Text (Đảo ngược)</td><td>60%</td><td>55%</td><td>50%</td></tr>
+          <tr><td>GPT Text (Đảo ngược)</td><td>60%</td><td>55%</td><td>50%</td></tr>
+          <tr><td>Gemini Text (Đảo ngược)</td><td>60%</td><td>55%</td><td>50%</td></tr>
+          <tr><td>Nano-Banana Image (Đảo ngược)</td><td>60%</td><td>55%</td><td>50%</td></tr>
+          <tr><td>GPT-image Image (Đảo ngược)</td><td>60%</td><td>55%</td><td>50%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- AI Token King -->
+    <div class="pricing-sub-title" style="margin-top: 32px;">Gói B &#8212; AI Token King (Tài khoản gốc)</div>
+    <div class="pricing-cards-3">
+      <div class="pricing-card anthropic">
+        <div class="vendor-name">Anthropic</div>
+        <div class="vendor-discount">Giá khách hàng: 92% giá niêm yết</div>
+        <div class="pricing-model">
+          <div class="model-name">Claude Sonnet 5</div>
+          <div class="model-price">92% <span>4.7 trở xuống</span></div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">Claude Fable 5</div>
+          <div class="model-price">92% <span>4.7 trở xuống</span></div>
+        </div>
+      </div>
+      <div class="pricing-card openai">
+        <div class="vendor-name">OpenAI</div>
+        <div class="vendor-discount">Giá khách hàng | Azure</div>
+        <div class="pricing-model">
+          <div class="model-name">GPT 5.5 trở lên</div>
+          <div class="model-price">94%</div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">GPT 5.4 trở xuống</div>
+          <div class="model-price">83%</div>
+        </div>
+      </div>
+      <div class="pricing-card google">
+        <div class="vendor-name">Google</div>
+        <div class="vendor-discount">Giá khách hàng | GCP</div>
+        <div class="pricing-model">
+          <div class="model-name">Tất cả mô hình Google</div>
+          <div class="model-price">83%</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="pricing-detail-toggle" onclick="document.getElementById('fullPricingTK').classList.toggle('open'); this.textContent = document.getElementById('fullPricingTK').classList.contains('open') ? 'Thu gọn chi tiết đầy đủ AI Token King (Tài khoản gốc)' : 'Mở rộng chi tiết đầy đủ AI Token King (Tài khoản gốc)';">Mở rộng chi tiết đầy đủ AI Token King (Tài khoản gốc)</button>
+
+    <div class="pricing-full-table" id="fullPricingTK">
+      <table>
+        <thead>
+          <tr>
+            <th>Thương hiệu</th>
+            <th>Đám mây</th>
+            <th>Mô hình</th>
+            <th>Chiết khấu</th>
+            <th>Ghi chú</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="5" class="vendor-label">ANTHROPIC &#8212; 92%</td></tr>
+          <tr><td>Claude</td><td>AWS</td><td>Tất cả mô hình Claude</td><td>92%</td><td></td></tr>
+          <tr><td colspan="5" class="vendor-label">OPENAI</td></tr>
+          <tr><td>OpenAI</td><td>Azure</td><td>GPT 5.5 trở lên</td><td>94%</td><td></td></tr>
+          <tr><td>OpenAI</td><td>Azure</td><td>GPT 5.4 trở xuống</td><td>83%</td><td></td></tr>
+          <tr><td colspan="5" class="vendor-label">GOOGLE &#8212; 83%</td></tr>
+          <tr><td>Google</td><td>GCP</td><td>Tất cả mô hình Google</td><td>83%</td><td></td></tr>
+          <tr><td colspan="5" class="vendor-label">Thương hiệu khác</td></tr>
+          <tr><td>Deepseek</td><td>Tencent Cloud</td><td>V4 / V3 Series</td><td>99%</td><td></td></tr>
+          <tr><td>ByteDance</td><td>Byteplus</td><td>seedance / seedream / doubao</td><td>Theo giá niêm yết</td><td></td></tr>
+          <tr><td>Alicloud</td><td>AliCloud</td><td>Qwen Series</td><td>77%</td><td></td></tr>
+          <tr><td>Alicloud</td><td>AliCloud</td><td>Happy Horse / Wan</td><td>72%</td><td></td></tr>
+          <tr><td>Keling</td><td>Keling</td><td>Keling 3.0</td><td>83%</td><td></td></tr>
+          <tr><td>Minimax</td><td>Tencent Cloud</td><td>M2.5 / M2.7</td><td>88%</td><td></td></tr>
+          <tr><td>GLM (Zhipu)</td><td>Tencent Cloud</td><td>GLM-5</td><td>88%</td><td></td></tr>
+          <tr><td>Moonshot</td><td>Tencent Cloud / AliCloud</td><td>Kimi k2.5 / k2.6</td><td>Theo giá niêm yết</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- AI Token King Nền tảng tổng hợp Ant (Tài khoản không gốc) -->
+    <div class="pricing-sub-title" style="margin-top: 32px;">Gói C &#8212; AI Token King Nền tảng tổng hợp Ant (Tài khoản không gốc)</div>
+    <div class="pricing-cards">
+      <div class="pricing-card anthropic">
+        <div class="vendor-name">Anthropic</div>
+        <div class="vendor-discount">Giá khách hàng: 92% giá niêm yết | Đơn vị: $/M tokens</div>
+        <div class="pricing-model">
+          <div class="model-name">Claude Sonnet 5</div>
+          <div class="model-price">$1.84 / $9.20 <span>Đầu vào / Đầu ra</span></div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">Claude Fable 5</div>
+          <div class="model-price">$9.20 / $46.00 <span>Đầu vào / Đầu ra</span></div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">Claude Sonnet 4.6</div>
+          <div class="model-price">$2.76 / $13.80 <span>Đầu vào / Đầu ra</span></div>
+        </div>
+      </div>
+
+      <div class="pricing-card google">
+        <div class="vendor-name">Google</div>
+        <div class="vendor-discount">Giá khách hàng: 90% giá niêm yết | Đơn vị: $/M tokens</div>
+        <div class="pricing-model">
+          <div class="model-name">Gemini 3.5 Flash</div>
+          <div class="model-price">$1.35 / $8.10 <span>Đầu vào / Đầu ra</span></div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">Gemini 3.1 Pro</div>
+          <div class="model-price">$1.80 / $10.80 <span>Đầu vào / Đầu ra</span></div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">Gemini 3.1 Flash-Lite</div>
+          <div class="model-price">$0.225 / $1.35 <span>Đầu vào / Đầu ra</span></div>
+        </div>
+      </div>
+    </div>
+
+    <button class="pricing-detail-toggle" onclick="document.getElementById('fullPricing').classList.toggle('open'); this.textContent = document.getElementById('fullPricing').classList.contains('open') ? 'Thu gọn chi tiết đầy đủ Nền tảng tổng hợp Ant (Tài khoản không gốc)' : 'Mở rộng chi tiết đầy đủ Nền tảng tổng hợp Ant (Tài khoản không gốc)';">Mở rộng chi tiết đầy đủ Nền tảng tổng hợp Ant (Tài khoản không gốc)</button>
+
+    <div class="pricing-full-table" id="fullPricing">
+      <table>
+        <thead>
+          <tr>
+            <th>Mô hình</th>
+            <th>Giá niêm yết (Vào/Ra)</th>
+            <th>Giá khách hàng (Vào/Ra)</th>
+            <th>Chiết khấu</th>
+            <th>Ghi chú</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="5" class="vendor-label">ANTHROPIC &#8212; 92%</td></tr>
+          <tr><td>Claude Sonnet 5</td><td>$2.00 / $10.00</td><td>$1.84 / $9.20</td><td>92%</td><td>0-1M context</td></tr>
+          <tr><td>Claude Fable 5</td><td>$10.00 / $50.00</td><td>$9.20 / $46.00</td><td>92%</td><td>0-1M context</td></tr>
+          <tr><td>Claude Opus 4.8</td><td>$5.00 / $25.00</td><td>$4.60 / $23.00</td><td>92%</td><td>0-1M context</td></tr>
+          <tr><td>Claude Opus 4.7</td><td>$5.00 / $25.00</td><td>$4.60 / $23.00</td><td>92%</td><td>0-1M context</td></tr>
+          <tr><td>Claude Opus 4.6</td><td>$5.00 / $25.00</td><td>$4.60 / $23.00</td><td>92%</td><td>0-1M context</td></tr>
+          <tr><td>Claude Sonnet 4.6</td><td>$3.00 / $15.00</td><td>$2.76 / $13.80</td><td>92%</td><td>0-1M context</td></tr>
+          <tr><td>Claude Haiku 4.5</td><td>$1.00 / $5.00</td><td>$0.92 / $4.60</td><td>92%</td><td>0-200K context</td></tr>
+          <tr><td colspan="5" class="vendor-label">GOOGLE &#8212; 90%</td></tr>
+          <tr><td>Gemini 3.5 Flash</td><td>$1.50 / $9.00</td><td>$1.35 / $8.10</td><td>90%</td><td></td></tr>
+          <tr><td>Gemini 3.1 Flash Image</td><td>$0.50 / $3.00</td><td>$0.45 / $2.70</td><td>90%</td><td></td></tr>
+          <tr><td>Gemini 3.1 Pro</td><td>$2.00 / $12.00</td><td>$1.80 / $10.80</td><td>90%</td><td>&#8804;200K context</td></tr>
+          <tr><td>Gemini 3.1 Flash-Lite</td><td>$0.25 / $1.50</td><td>$0.225 / $1.35</td><td>90%</td><td></td></tr>
+          <tr><td>Gemini 3.1 Pro Preview</td><td>$2.00 / $12.00</td><td>$1.80 / $10.80</td><td>90%</td><td></td></tr>
+          <tr><td>Gemini 3.1 Pro Image</td><td>$2.00 / $12.00</td><td>$1.80 / $10.80</td><td>90%</td><td></td></tr>
+          <tr><td>Gemini 3 Flash Preview</td><td>$0.50 / $3.00</td><td>$0.45 / $2.70</td><td>90%</td><td></td></tr>
+          <tr><td>Gemini 3 Pro Image</td><td>$2.00 / $12.00</td><td>$1.80 / $10.80</td><td>90%</td><td></td></tr>
+          <tr><td>Nano Banana Pro</td><td>$2.00 / $12.00</td><td>$1.80 / $10.80</td><td>90%</td><td></td></tr>
+          <tr><td>Nano Banana 2</td><td>$0.50 / $3.00</td><td>$0.45 / $2.70</td><td>90%</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    Giá và chiết khấu thực tế tùy thuộc vào đàm phán. Các mô hình không chiết khấu toàn cầu được cung cấp theo giá niêm yết cho cả ba gói.<br>
+    AI Token King &middot; So sánh gói dịch vụ AI Cloud &middot; Cập nhật lần cuối: 2026-08-28
+  </footer>
+</div>
+
+<script>
+// Filter tabs
+document.querySelectorAll('.filter-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const filter = tab.dataset.filter;
+    document.querySelectorAll('.matrix-row').forEach(row => {
+      const show = filter === 'all' || row.dataset.cat === filter;
+      row.style.display = show ? '' : 'none';
+      const detail = row.nextElementSibling;
+      if (detail && detail.classList.contains('detail-panel')) {
+        detail.style.display = show ? 'block' : 'none';
+      }
+    });
+  });
+});
+
+
+</script>
+</body>
+</html>

@@ -7,9 +7,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap">
 <style>
 :root {
-  --ink: #1C2331;
-  --ink-secondary: #4A5568;
-  --ink-muted: #8896A6;
+  --ink: #111827;
+  --ink-secondary: #374151;
+  --ink-muted: #6B7280;
   --surface: #F5F6FA;
   --surface-card: #FFFFFF;
   --surface-elevated: #FFFFFF;
@@ -26,12 +26,12 @@
   --plan-ant-bg: #FFFBEB;
   --plan-ant-border: #FDE68A;
 
-  --good: #16A34A;
-  --good-bg: #F0FDF4;
-  --caution: #CA8A04;
-  --caution-bg: #FEFCE8;
-  --risk: #DC2626;
-  --risk-bg: #FEF2F2;
+  --good: #15803D;
+  --good-bg: #DCFCE7;
+  --caution: #A16207;
+  --caution-bg: #FEF9C3;
+  --risk: #B91C1C;
+  --risk-bg: #FEE2E2;
 
   --radius: 10px;
   --radius-sm: 6px;
@@ -148,7 +148,7 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 3px;
+  height: 4px;
 }
 .plan-card.native::before { background: var(--plan-native); }
 .plan-card.tokenking::before { background: var(--plan-tokenking); }
@@ -182,13 +182,16 @@ body {
   justify-content: space-between;
   align-items: center;
   font-size: 13px;
+  padding: 2px 0;
 }
 .meta-row .meta-label {
-  color: var(--ink-muted);
+  color: var(--ink-secondary);
+  font-weight: 500;
 }
 .meta-row .meta-value {
   font-weight: 600;
   font-size: 13px;
+  text-align: right;
 }
 
 .risk-badge {
@@ -218,9 +221,9 @@ body {
   margin-bottom: 32px;
 }
 .section-title {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 700;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   letter-spacing: -0.01em;
   display: flex;
   align-items: center;
@@ -252,7 +255,7 @@ body {
   font-size: 14px;
 }
 .risk-alert span {
-  color: var(--ink-secondary);
+  color: var(--ink);
 }
 
 /* Comparison Matrix */
@@ -270,11 +273,11 @@ body {
   background: var(--surface-elevated);
 }
 .matrix-header .cell {
-  padding: 14px 16px;
-  font-size: 12px;
+  padding: 16px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.03em;
-  color: var(--ink-muted);
+  color: var(--ink-secondary);
 }
 .matrix-header .cell:not(:first-child) {
   text-align: center;
@@ -288,14 +291,12 @@ body {
   grid-template-columns: 180px 1fr 1fr 1fr;
   border-bottom: 1px solid var(--border-subtle);
   transition: background 0.15s;
-  cursor: pointer;
 }
 .matrix-row:last-child { border-bottom: none; }
-.matrix-row:hover { background: var(--surface); }
 
 .matrix-row .cell {
   padding: 16px;
-  font-size: 13px;
+  font-size: 14px;
   display: flex;
   align-items: center;
 }
@@ -305,17 +306,17 @@ body {
 }
 
 .matrix-row .dim-label {
-  font-weight: 600;
-  font-size: 13px;
+  font-weight: 700;
+  font-size: 14px;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 .dim-tag {
-  font-size: 10px;
-  font-weight: 600;
-  padding: 2px 6px;
-  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
   letter-spacing: 0.04em;
   flex-shrink: 0;
 }
@@ -342,18 +343,19 @@ body {
 .score {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  font-weight: 500;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
 }
 .score-icon {
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 700;
   flex-shrink: 0;
 }
 .score-icon.good { background: var(--good-bg); color: var(--good); }
@@ -363,12 +365,9 @@ body {
 
 /* Detail panel */
 .detail-panel {
-  display: none;
+  display: block;
   grid-column: 1 / -1;
   padding: 0 16px 16px;
-}
-.detail-panel.open {
-  display: block;
 }
 .detail-inner {
   background: var(--surface);
@@ -379,11 +378,11 @@ body {
   gap: 16px;
 }
 .detail-col h4 {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink-muted);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
   margin-bottom: 8px;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
 }
 .detail-col p {
   font-size: 13px;
@@ -457,13 +456,13 @@ body {
   padding: 24px;
 }
 .rec-card h4 {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   margin-bottom: 8px;
 }
 .rec-card .rec-for {
-  font-size: 12px;
-  color: var(--ink-muted);
+  font-size: 13px;
+  color: var(--ink-secondary);
   font-weight: 500;
   margin-bottom: 12px;
 }
@@ -499,8 +498,9 @@ body {
   margin-top: 48px;
   padding-top: 24px;
   border-top: 1px solid var(--border);
-  font-size: 12px;
-  color: var(--ink-muted);
+  font-size: 13px;
+  color: var(--ink-secondary);
+  text-align: center;
   line-height: 1.8;
 }
 
@@ -531,6 +531,146 @@ body {
   border-color: var(--ink);
 }
 
+/* Pricing section */
+.pricing-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap);
+  margin-bottom: 20px;
+}
+.pricing-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.pricing-card.anthropic::before { background: #E04D01; }
+.pricing-card.openai::before { background: #10A37F; }
+.pricing-card.google::before { background: #4285F4; }
+
+.pricing-sub-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  margin-top: 24px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+}
+.pricing-sub-title:first-child { margin-top: 0; }
+
+.pricing-cards-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+  margin-bottom: 20px;
+}
+
+.pricing-card .vendor-name {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.pricing-card .vendor-discount {
+  font-size: 12px;
+  color: var(--ink-secondary);
+  margin-bottom: 16px;
+}
+.pricing-model {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 13px;
+}
+.pricing-model:last-child { border-bottom: none; }
+.pricing-model .model-name {
+  font-weight: 600;
+  color: var(--ink);
+}
+.pricing-model .model-price {
+  font-weight: 600;
+  color: var(--ink);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.pricing-model .model-price span {
+  display: block;
+  font-size: 11px;
+  color: var(--ink-muted);
+}
+
+.pricing-detail-toggle {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 20px;
+  width: 100%;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-secondary);
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.15s;
+  font-family: inherit;
+}
+.pricing-detail-toggle:hover {
+  background: var(--surface);
+}
+
+.pricing-full-table {
+  display: none;
+  margin-top: 16px;
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.pricing-full-table.open { display: block; }
+.pricing-full-table { overflow-x: auto; }
+
+.pricing-full-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.pricing-full-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-muted);
+  letter-spacing: 0.04em;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  cursor: default;
+}
+.pricing-full-table th:hover { background: var(--surface); }
+.pricing-full-table th::after { display: none; }
+.pricing-full-table td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  font-variant-numeric: tabular-nums;
+}
+.pricing-full-table tr:last-child td { border-bottom: none; }
+.pricing-full-table .vendor-label {
+  font-weight: 600;
+  font-size: 12px;
+  padding: 8px 16px;
+  background: var(--surface);
+  color: var(--ink-muted);
+  letter-spacing: 0.03em;
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   .plan-cards { grid-template-columns: 1fr; }
@@ -538,6 +678,8 @@ body {
   .radar-section { grid-template-columns: 1fr; }
   .rec-cards { grid-template-columns: 1fr; }
   .detail-inner { grid-template-columns: 1fr; }
+  .pricing-cards { grid-template-columns: 1fr; }
+  .pricing-cards-3 { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
   .page { padding: 24px 16px 60px; }
@@ -552,30 +694,38 @@ body {
 
 <div class="page">
   <header class="page-header">
-    <h1>AI 雲端服務方案對比</h1>
-    <div class="subtitle">原生帳號 (AWS/GCP) vs AI Token King vs 螞蟻聚合平台</div>
-    <div class="date">2026-08-24 更新</div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div>
+        <h1>AI 雲端服務方案對比</h1>
+        <div class="subtitle">官方帳號 (AWS / GCP) vs AI Token King（原生帳號）vs AI Token King 螞蟻聚合平台（非原生帳號）</div>
+        <div class="date">2026-08-24 更新</div>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <a href="en.html" style="font-size:13px;font-weight:600;color:var(--ink-muted);text-decoration:none;border:1px solid var(--border);padding:5px 14px;border-radius:20px;white-space:nowrap;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--ink-secondary)';this.style.color='var(--ink)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--ink-muted)'">EN</a>
+        <a href="vi.html" style="font-size:13px;font-weight:600;color:var(--ink-muted);text-decoration:none;border:1px solid var(--border);padding:5px 14px;border-radius:20px;white-space:nowrap;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--ink-secondary)';this.style.color='var(--ink)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--ink-muted)'">VI</a>
+      </div>
+    </div>
   </header>
 
   <!-- Risk Alert -->
   <div class="risk-alert">
-    <strong>原生帳號方案無法退款</strong>
-    <span>若帳號被原廠停用（如被認定為蒸餾行為等），事後無法退款。平台方案（AI Token King、螞蟻平台）可進行資源兌換或替換，用到完為止。</span>
+    <strong>官方帳號方案無法退款</strong>
+    <span>若帳號被原廠停用（如被認定為蒸餾行為等），事後無法退款。平台方案（AI Token King（原生帳號）、AI Token King 螞蟻聚合平台（非原生帳號））可進行資源兌換或替換，用到完為止。</span>
   </div>
 
   <!-- Plan Summary Cards -->
   <div class="plan-cards">
     <div class="plan-card native">
       <div class="plan-label">方案 A</div>
-      <div class="plan-name">原生帳號</div>
+      <div class="plan-name">官方帳號</div>
       <div class="plan-meta">
         <div class="meta-row">
-          <span class="meta-label">平台</span>
+          <span class="meta-label">產品</span>
           <span class="meta-value">AWS / GCP</span>
         </div>
         <div class="meta-row">
           <span class="meta-label">折扣</span>
-          <span class="meta-value">AWS ~95折 / GCP ~90折</span>
+          <span class="meta-value">Anthropic 95折~85折 / OpenAI 85折~75折</span>
         </div>
         <div class="meta-row">
           <span class="meta-label">付費</span>
@@ -594,7 +744,7 @@ body {
 
     <div class="plan-card tokenking">
       <div class="plan-label">方案 B</div>
-      <div class="plan-name">AI Token King</div>
+      <div class="plan-name">AI Token King（原生帳號）</div>
       <div class="plan-meta">
         <div class="meta-row">
           <span class="meta-label">平台</span>
@@ -602,7 +752,7 @@ body {
         </div>
         <div class="meta-row">
           <span class="meta-label">折扣</span>
-          <span class="meta-value">更深折扣</span>
+          <span class="meta-value">Anthropic 92折 / OpenAI 94折起</span>
         </div>
         <div class="meta-row">
           <span class="meta-label">付費</span>
@@ -621,15 +771,15 @@ body {
 
     <div class="plan-card ant">
       <div class="plan-label">方案 C</div>
-      <div class="plan-name">螞蟻聚合平台</div>
+      <div class="plan-name">AI Token King 螞蟻聚合平台<span style="font-size:13px;font-weight:500;color:var(--ink-muted);margin-left:6px;">（非原生帳號）</span></div>
       <div class="plan-meta">
         <div class="meta-row">
           <span class="meta-label">平台</span>
-          <span class="meta-value">國內優化</span>
+          <span class="meta-value">三方聚合平台</span>
         </div>
         <div class="meta-row">
           <span class="meta-label">折扣</span>
-          <span class="meta-value">平台折扣</span>
+          <span class="meta-value">Anthropic 92折 / OpenAI 90折</span>
         </div>
         <div class="meta-row">
           <span class="meta-label">付費</span>
@@ -665,9 +815,9 @@ body {
     <div class="matrix" id="matrix">
       <div class="matrix-header">
         <div class="cell">維度</div>
-        <div class="cell h-native">原生帳號</div>
-        <div class="cell h-tokenking">AI Token King</div>
-        <div class="cell h-ant">螞蟻平台</div>
+        <div class="cell h-native">官方帳號<br><span style="font-weight:400;font-size:10px;opacity:0.7">AWS / GCP</span></div>
+        <div class="cell h-tokenking">AI Token King<br><span style="font-weight:400;font-size:10px;opacity:0.7">原生帳號</span></div>
+        <div class="cell h-ant">AI Token King 螞蟻聚合平台<br><span style="font-weight:400;font-size:10px;opacity:0.7">非原生帳號</span></div>
       </div>
 
       <div class="matrix-row" data-cat="price" data-idx="0">
@@ -678,23 +828,23 @@ body {
       </div>
       <div class="detail-panel" data-detail="0">
         <div class="detail-inner">
-          <div class="detail-col"><h4>原生帳號</h4><p>AWS 約 95 折，GCP 約 90 折。折扣幅度有限，依帳號等級而定。</p></div>
-          <div class="detail-col"><h4>AI Token King</h4><p>提供比原生帳號更深的折扣，平台聚合優勢帶來更優惠的價格。</p></div>
-          <div class="detail-col"><h4>螞蟻平台</h4><p>按約定提供平台折扣，具體價格依合作條款商定。</p></div>
+          <div class="detail-col"><h4>官方帳號</h4><p>Anthropic 95折~85折、OpenAI 85折~75折、Gemini 95折~85折。折扣依月用量階梯遞增（28k / 28k–70k / 70k 以上）。</p></div>
+          <div class="detail-col"><h4>AI Token King（原生帳號）</h4><p>Anthropic 92折、OpenAI 94折起（5.4↓ 83折）、Google 83折。平台聚合優勢帶來更優惠的價格。</p></div>
+          <div class="detail-col"><h4>AI Token King 螞蟻聚合平台（非原生帳號）</h4><p>Anthropic 92折、OpenAI 90折。按約定提供平台折扣，具體價格依合作條款商定。</p></div>
         </div>
       </div>
 
       <div class="matrix-row" data-cat="risk" data-idx="1">
-        <div class="cell"><span class="dim-label"><span class="dim-tag risk">風險</span>停用退款</span></div>
-        <div class="cell"><span class="score"><span class="score-icon bad">&#10005;</span> 不退</span></div>
-        <div class="cell"><span class="score"><span class="score-icon caution">&#8635;</span> 兌換</span></div>
-        <div class="cell"><span class="score"><span class="score-icon caution">&#8635;</span> 替換</span></div>
+        <div class="cell"><span class="dim-label"><span class="dim-tag risk">風險</span>停用與蒸餾風險</span></div>
+        <div class="cell"><span class="score"><span class="score-icon bad">&#10005;</span> 不退款</span></div>
+        <div class="cell"><span class="score"><span class="score-icon caution">&#8635;</span> 可兌換</span></div>
+        <div class="cell"><span class="score"><span class="score-icon caution">&#8635;</span> 可替換</span></div>
       </div>
       <div class="detail-panel" data-detail="1">
         <div class="detail-inner">
-          <div class="detail-col"><h4>原生帳號</h4><p>原廠停用後無法退款，須提供停用證據。這是最大的風險所在。</p></div>
-          <div class="detail-col"><h4>AI Token King</h4><p>發現蒸餾行為可進行資源兌換，用到完為止，降低損失。</p></div>
-          <div class="detail-col"><h4>螞蟻平台</h4><p>被停用後可替換資源，用到完為止，提供緩衝保障。</p></div>
+          <div class="detail-col"><h4>官方帳號</h4><p>若被原廠認定為蒸餾行為，帳號直接停用且無法退款，須提供停用證據。這是最大的風險所在。</p></div>
+          <div class="detail-col"><h4>AI Token King（原生帳號）</h4><p>發現蒸餾或違規行為，可進行資源兌換處理，用到完為止，損失可控。</p></div>
+          <div class="detail-col"><h4>AI Token King 螞蟻聚合平台（非原生帳號）</h4><p>被停用或發現違規行為，平台可替換資源，用到完為止，提供緩衝保障。</p></div>
         </div>
       </div>
 
@@ -706,9 +856,9 @@ body {
       </div>
       <div class="detail-panel" data-detail="2">
         <div class="detail-inner">
-          <div class="detail-col"><h4>原生帳號</h4><p>預儲機制，先充值後使用。</p></div>
-          <div class="detail-col"><h4>AI Token King</h4><p>預儲機制，最低 $5 即可開始使用，門檻極低。</p></div>
-          <div class="detail-col"><h4>螞蟻平台</h4><p>預儲機制，按需充值。</p></div>
+          <div class="detail-col"><h4>官方帳號</h4><p>預儲機制，先充值後使用。</p></div>
+          <div class="detail-col"><h4>AI Token King（原生帳號）</h4><p>預儲機制，最低 $5 即可開始使用，門檻極低。</p></div>
+          <div class="detail-col"><h4>AI Token King 螞蟻聚合平台（非原生帳號）</h4><p>預儲機制，按需充值。</p></div>
         </div>
       </div>
 
@@ -720,9 +870,9 @@ body {
       </div>
       <div class="detail-panel" data-detail="3">
         <div class="detail-inner">
-          <div class="detail-col"><h4>原生帳號</h4><p>帳號無法抽換，客戶需自行搭建線路，增加額外成本與技術負擔。</p></div>
-          <div class="detail-col"><h4>AI Token King</h4><p>使用阿里雲 + 騰訊雲，基礎線路已達最佳化。</p></div>
-          <div class="detail-col"><h4>螞蟻平台</h4><p>國內螞蟻雲 / 阿里雲，邊界點優化，適合國內用戶。</p></div>
+          <div class="detail-col"><h4>官方帳號</h4><p>帳號無法抽換，客戶需自行搭建線路，增加額外成本與技術負擔。</p></div>
+          <div class="detail-col"><h4>AI Token King（原生帳號）</h4><p>使用阿里雲 + 騰訊雲，基礎線路已達最佳化。</p></div>
+          <div class="detail-col"><h4>AI Token King 螞蟻聚合平台（非原生帳號）</h4><p>國內螞蟻雲 / 阿里雲，邊界點優化，適合國內用戶。</p></div>
         </div>
       </div>
 
@@ -734,95 +884,42 @@ body {
       </div>
       <div class="detail-panel" data-detail="4">
         <div class="detail-inner">
-          <div class="detail-col"><h4>原生帳號</h4><p>自助查詢，只能查看該帳號的 Explorer / Billing Explorer。</p></div>
-          <div class="detail-col"><h4>AI Token King</h4><p>即時計費，詳細 Billing 資訊，$5/$10 即可使用，支援小額測試。</p></div>
-          <div class="detail-col"><h4>螞蟻平台</h4><p>按平台計費機制，提供定期結算清單。</p></div>
+          <div class="detail-col"><h4>官方帳號</h4><p>自助查詢，只能查看該帳號的 Explorer / Billing Explorer。</p></div>
+          <div class="detail-col"><h4>AI Token King（原生帳號）</h4><p>即時計費，詳細 Billing 資訊，$5/$10 即可使用，支援小額測試。</p></div>
+          <div class="detail-col"><h4>AI Token King 螞蟻聚合平台（非原生帳號）</h4><p>按平台計費機制，提供定期結算清單。</p></div>
         </div>
       </div>
 
-      <div class="matrix-row" data-cat="risk" data-idx="5">
-        <div class="cell"><span class="dim-label"><span class="dim-tag risk">風控</span>蒸餾檢測</span></div>
-        <div class="cell"><span class="score"><span class="score-icon bad">&#10005;</span> 停用</span></div>
-        <div class="cell"><span class="score"><span class="score-icon caution">&#8635;</span> 兌換</span></div>
-        <div class="cell"><span class="score"><span class="score-icon caution">&#8635;</span> 替換</span></div>
-      </div>
-      <div class="detail-panel" data-detail="5">
-        <div class="detail-inner">
-          <div class="detail-col"><h4>原生帳號</h4><p>若被原廠認定為蒸餾，帳號直接停用且無法退款。</p></div>
-          <div class="detail-col"><h4>AI Token King</h4><p>發現違規行為，進行資源兌換處理，損失可控。</p></div>
-          <div class="detail-col"><h4>螞蟻平台</h4><p>發現違規行為，平台進行資源替換。</p></div>
-        </div>
-      </div>
-
-      <div class="matrix-row" data-cat="tech" data-idx="6">
+      <div class="matrix-row" data-cat="tech" data-idx="5">
         <div class="cell"><span class="dim-label"><span class="dim-tag tech">控制</span>帳號隸屬</span></div>
         <div class="cell"><span class="score"><span class="score-icon good">&#10003;</span> 自主</span></div>
         <div class="cell"><span class="score"><span class="score-icon caution">!</span> 託管</span></div>
         <div class="cell"><span class="score"><span class="score-icon caution">!</span> 託管</span></div>
       </div>
-      <div class="detail-panel" data-detail="6">
+      <div class="detail-panel" data-detail="5">
         <div class="detail-inner">
-          <div class="detail-col"><h4>原生帳號</h4><p>掛在供應商 Payer ID，完全客製化，帳號控制權在自己手上。</p></div>
-          <div class="detail-col"><h4>AI Token King</h4><p>AI Token King 平台託管，無法自主抽換。</p></div>
-          <div class="detail-col"><h4>螞蟻平台</h4><p>螞蟻平台託管，無法自主調整。</p></div>
+          <div class="detail-col"><h4>官方帳號</h4><p>掛在供應商 Payer ID，完全客製化，帳號控制權在自己手上。</p></div>
+          <div class="detail-col"><h4>AI Token King（原生帳號）</h4><p>AI Token King（原生帳號）平台託管，無法自主抽換。</p></div>
+          <div class="detail-col"><h4>AI Token King 螞蟻聚合平台（非原生帳號）</h4><p>螞蟻聚合平台託管，無法自主調整。</p></div>
         </div>
       </div>
 
-      <div class="matrix-row" data-cat="special" data-idx="7">
+      <div class="matrix-row" data-cat="special" data-idx="6">
         <div class="cell"><span class="dim-label"><span class="dim-tag special">特殊</span>無折扣模型</span></div>
         <div class="cell"><span class="score"><span class="score-icon neutral">&#8212;</span> 待確認</span></div>
         <div class="cell"><span class="score"><span class="score-icon neutral">&#8212;</span> 待確認</span></div>
         <div class="cell"><span class="score"><span class="score-icon neutral">&#8212;</span> 待確認</span></div>
       </div>
-      <div class="detail-panel" data-detail="7">
+      <div class="detail-panel" data-detail="6">
         <div class="detail-inner">
-          <div class="detail-col"><h4>原生帳號</h4><p>特定模型（如 Claude 2.5 等）全球無折扣，平進平出。待確認完整清單。</p></div>
-          <div class="detail-col"><h4>AI Token King</h4><p>同上，特定模型無折扣。待確認。</p></div>
-          <div class="detail-col"><h4>螞蟻平台</h4><p>同上，特定模型無折扣。待確認。</p></div>
+          <div class="detail-col"><h4>官方帳號</h4><p>特定模型（如 Claude 2.5 等）全球無折扣，平進平出。待確認完整清單。</p></div>
+          <div class="detail-col"><h4>AI Token King（原生帳號）</h4><p>同上，特定模型無折扣。待確認。</p></div>
+          <div class="detail-col"><h4>AI Token King 螞蟻聚合平台（非原生帳號）</h4><p>同上，特定模型無折扣。待確認。</p></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Radar Chart -->
-  <div class="section">
-    <div class="section-title">
-      <span class="dot" style="background: var(--plan-native)"></span>
-      綜合評分雷達圖
-    </div>
-    <div class="radar-section">
-      <div class="radar-wrap">
-        <canvas id="radar" width="460" height="400"></canvas>
-      </div>
-      <div class="legend-card">
-        <h3>評分維度</h3>
-        <div class="legend-item">
-          <div class="legend-swatch" style="background: var(--plan-native)"></div>
-          <div>
-            <div class="legend-text">原生帳號</div>
-            <div class="legend-sub">帳號自主、折扣一般、風險高</div>
-          </div>
-        </div>
-        <div class="legend-item">
-          <div class="legend-swatch" style="background: var(--plan-tokenking)"></div>
-          <div>
-            <div class="legend-text">AI Token King</div>
-            <div class="legend-sub">折扣深、低門檻、即時帳單</div>
-          </div>
-        </div>
-        <div class="legend-item">
-          <div class="legend-swatch" style="background: var(--plan-ant)"></div>
-          <div>
-            <div class="legend-text">螞蟻平台</div>
-            <div class="legend-sub">國內優化、資源靈活、長期合作</div>
-          </div>
-        </div>
-        <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border-subtle); font-size: 11px; color: var(--ink-muted); line-height: 1.6;">
-          評分基於各維度表現，5 分為最優。<br>點擊上方矩陣列可查看詳情。
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Recommendations -->
   <div class="section">
@@ -832,7 +929,7 @@ body {
     </div>
     <div class="rec-cards">
       <div class="rec-card native">
-        <h4>原生帳號</h4>
+        <h4>官方帳號</h4>
         <div class="rec-for">適合需要完全控制的團隊</div>
         <ul>
           <li>對線路品質無特殊要求</li>
@@ -843,7 +940,7 @@ body {
         </ul>
       </div>
       <div class="rec-card tokenking">
-        <h4>AI Token King</h4>
+        <h4>AI Token King（原生帳號）</h4>
         <div class="rec-for">適合追求性價比的團隊</div>
         <ul>
           <li>需要最深折扣優惠</li>
@@ -854,10 +951,10 @@ body {
         </ul>
       </div>
       <div class="rec-card ant">
-        <h4>螞蟻聚合平台</h4>
-        <div class="rec-for">適合國內為主的團隊</div>
+        <h4>AI Token King 螞蟻聚合平台（非原生帳號）</h4>
+        <div class="rec-for">AI Token King 螞蟻聚合平台</div>
         <ul>
-          <li>國內用戶優先考慮</li>
+          <li>需要三方聚合平台服務</li>
           <li>需要資源靈活調度</li>
           <li>追求長期合作穩定性</li>
           <li>需要國內線路邊界點優化</li>
@@ -900,9 +997,281 @@ body {
     </div>
   </div>
 
+  <!-- Pricing -->
+  <div class="section">
+    <div class="section-title">
+      <span class="dot" style="background: var(--accent, #4F46E5)"></span>
+      客戶報價
+    </div>
+
+    <!-- 方案 A 官方帳號 -->
+    <div class="pricing-sub-title">方案 A ─ 官方帳號</div>
+    <div class="pricing-cards-3">
+      <div class="pricing-card anthropic">
+        <div class="vendor-name">Anthropic (Claude)</div>
+        <div class="vendor-discount">依月用量階梯折扣（美金）</div>
+        <div class="pricing-model">
+          <div class="model-name">28k 以內</div>
+          <div class="model-price">95折</div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">28k–70k</div>
+          <div class="model-price">90折</div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">70k 以上</div>
+          <div class="model-price">85折</div>
+        </div>
+      </div>
+      <div class="pricing-card openai">
+        <div class="vendor-name">OpenAI (GPT)</div>
+        <div class="vendor-discount">依月用量階梯折扣（美金）</div>
+        <div class="pricing-model">
+          <div class="model-name">28k 以內</div>
+          <div class="model-price">85折</div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">28k–70k</div>
+          <div class="model-price">80折</div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">70k 以上</div>
+          <div class="model-price">75折</div>
+        </div>
+      </div>
+      <div class="pricing-card google">
+        <div class="vendor-name">Gemini</div>
+        <div class="vendor-discount">依月用量階梯折扣（美金）</div>
+        <div class="pricing-model">
+          <div class="model-name">28k 以內</div>
+          <div class="model-price">95折</div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">28k–70k</div>
+          <div class="model-price">90折</div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">70k 以上</div>
+          <div class="model-price">85折</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="pricing-detail-toggle" onclick="document.getElementById('fullPricingA').classList.toggle('open'); this.textContent = document.getElementById('fullPricingA').classList.contains('open') ? '收起官方帳號完整明細' : '展開官方帳號完整明細';">展開官方帳號完整明細</button>
+
+    <div class="pricing-full-table" id="fullPricingA">
+      <table>
+        <thead>
+          <tr>
+            <th>品牌/模型</th>
+            <th>低量</th>
+            <th>中量</th>
+            <th>高量</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="4" class="vendor-label">📝 文本模型 — 用量/月：28k以內 / 28k–70k / 70k以上（美金）</td></tr>
+          <tr><td>Claude 系列</td><td>95折</td><td>90折</td><td>85折</td></tr>
+          <tr><td>GPT 系列</td><td>85折</td><td>80折</td><td>75折</td></tr>
+          <tr><td>Gemini 系列</td><td>95折</td><td>90折</td><td>85折</td></tr>
+          <tr><td>Grok</td><td>70折</td><td>65折</td><td>60折</td></tr>
+          <tr><td>通義 Qwen 系列</td><td>90折</td><td>85折</td><td>80折</td></tr>
+
+          <tr><td colspan="4" class="vendor-label">📝 文本模型 — 用量/月：20萬以內 / 20–50萬 / 50萬以上（美金）</td></tr>
+          <tr><td>Doubao-Seed-2.1-pro/turbo</td><td>85折</td><td>80折</td><td>75折</td></tr>
+          <tr><td>Doubao-Seed-2.0 系列</td><td>90折</td><td>85折</td><td>80折</td></tr>
+          <tr><td>Kimi-K3（官方資源）</td><td>98折</td><td>100折</td><td>100折</td></tr>
+          <tr><td>Kimi-K2.7（雲廠商）</td><td>90折</td><td>85折</td><td>80折</td></tr>
+          <tr><td>Kimi-K2.6（雲廠商）</td><td>80折</td><td>75折</td><td>70折</td></tr>
+          <tr><td>Kimi-K2.5（雲廠商）</td><td>75折</td><td>70折</td><td>65折</td></tr>
+          <tr><td>GLM 5.3（官方資源）</td><td>80折</td><td>80折</td><td>75折</td></tr>
+          <tr><td>GLM 5.3（雲廠商）</td><td>98折</td><td>100折</td><td>97折</td></tr>
+          <tr><td>GLM 5.2（雲廠商）</td><td>70折</td><td>65折</td><td>60折</td></tr>
+          <tr><td>GLM 5.1（雲廠商）</td><td>80折</td><td>75折</td><td>70折</td></tr>
+          <tr><td>GLM 5（雲廠商）</td><td>70折</td><td>65折</td><td>60折</td></tr>
+          <tr><td>GLM-5V-Turbo（官方）</td><td>95折</td><td>90折</td><td>85折</td></tr>
+          <tr><td>DeepSeek V4 Pro/Flash（雲廠商）</td><td>85折</td><td>80折</td><td>75折</td></tr>
+          <tr><td>DeepSeek V3.2（雲廠商）</td><td>70折</td><td>65折</td><td>60折</td></tr>
+          <tr><td>MiniMax-M3 / M2.7（官方）</td><td>75折</td><td>70折</td><td>65折</td></tr>
+          <tr><td>MiniMax-M2.5（官方）</td><td>75折</td><td>75折</td><td>70折</td></tr>
+
+          <tr><td colspan="4" class="vendor-label">🖼️ 圖片模型 — 用量/月：28k以內 / 28k–70k / 70k以上（美金）</td></tr>
+          <tr><td>GPT-image 系列</td><td>60折</td><td>55折</td><td>50折</td></tr>
+          <tr><td>Doubao-Seedream 系列</td><td>100折</td><td>100折</td><td>95折</td></tr>
+          <tr><td>Nano-Banana 系列</td><td>60折</td><td>55折</td><td>50折</td></tr>
+
+          <tr><td colspan="4" class="vendor-label">🎬 視頻模型 — 用量/月：28k以內 / 28k–70k / 70k以上（美金）</td></tr>
+          <tr><td>Wanx 視頻系列</td><td>80折</td><td>75折</td><td>70折</td></tr>
+          <tr><td>Google Veo 系列</td><td>100折</td><td>95折</td><td>90折</td></tr>
+          <tr><td>Vidu 視頻系列</td><td>80折</td><td>75折</td><td>70折</td></tr>
+          <tr><td>可靈視頻系列</td><td>80折</td><td>75折</td><td>70折</td></tr>
+
+          <tr><td colspan="4" class="vendor-label">🎬 視頻模型 — 用量/月：20萬以內 / 20–50萬 / 50萬以上（美金）</td></tr>
+          <tr><td>Seedance 2.5（需預充值）</td><td>98折</td><td>96折</td><td>94折</td></tr>
+          <tr><td>Seedance 2.0（需預充值）</td><td>98折</td><td>95折</td><td>93折</td></tr>
+          <tr><td>Seedance 2.0 Fast（可後付費）</td><td>95折</td><td>90折</td><td>85折</td></tr>
+          <tr><td>Seedance 2.0 Mini（可後付費）</td><td>65折</td><td>60折</td><td>55折</td></tr>
+
+          <tr><td colspan="4" class="vendor-label">🔄 逆向模型 — 用量/月：14k以內 / 14k–42k / 42k以上（美金）</td></tr>
+          <tr><td>Claude 文本（逆向）</td><td>60折</td><td>55折</td><td>50折</td></tr>
+          <tr><td>GPT 文本（逆向）</td><td>60折</td><td>55折</td><td>50折</td></tr>
+          <tr><td>Gemini 文本（逆向）</td><td>60折</td><td>55折</td><td>50折</td></tr>
+          <tr><td>Nano-Banana 圖片（逆向）</td><td>60折</td><td>55折</td><td>50折</td></tr>
+          <tr><td>GPT-image 圖片（逆向）</td><td>60折</td><td>55折</td><td>50折</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- AI Token King -->
+    <div class="pricing-sub-title" style="margin-top: 32px;">方案 B ─ AI Token King（原生帳號）</div>
+    <div class="pricing-cards-3">
+      <div class="pricing-card anthropic">
+        <div class="vendor-name">Anthropic</div>
+        <div class="vendor-discount">客戶售價：92 折</div>
+        <div class="pricing-model">
+          <div class="model-name">Claude Sonnet 5</div>
+          <div class="model-price">92折 <span>4.7 及以下</span></div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">Claude Fable 5</div>
+          <div class="model-price">92折 <span>4.7 及以下</span></div>
+        </div>
+      </div>
+      <div class="pricing-card openai">
+        <div class="vendor-name">OpenAI</div>
+        <div class="vendor-discount">客戶售價 ｜ Azure</div>
+        <div class="pricing-model">
+          <div class="model-name">GPT 5.5 及更高版本</div>
+          <div class="model-price">94折</div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">GPT 5.4 及更低版本</div>
+          <div class="model-price">83折</div>
+        </div>
+      </div>
+      <div class="pricing-card google">
+        <div class="vendor-name">Google</div>
+        <div class="vendor-discount">客戶售價 ｜ GCP</div>
+        <div class="pricing-model">
+          <div class="model-name">全部 Google 模型</div>
+          <div class="model-price">83折</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="pricing-detail-toggle" onclick="document.getElementById('fullPricingTK').classList.toggle('open'); this.textContent = document.getElementById('fullPricingTK').classList.contains('open') ? '收起 AI Token King（原生帳號）完整明細' : '展開 AI Token King（原生帳號）完整明細';">展開 AI Token King（原生帳號）完整明細</button>
+
+    <div class="pricing-full-table" id="fullPricingTK">
+      <table>
+        <thead>
+          <tr>
+            <th>品牌</th>
+            <th>雲端</th>
+            <th>模型</th>
+            <th>折扣</th>
+            <th>備註</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="5" class="vendor-label">ANTHROPIC — 92 折</td></tr>
+          <tr><td>Claude</td><td>AWS</td><td>Claude 全系列</td><td>92折</td><td></td></tr>
+          <tr><td colspan="5" class="vendor-label">OPENAI</td></tr>
+          <tr><td>OpenAI</td><td>Azure</td><td>GPT 5.5 及更高版本</td><td>94折</td><td></td></tr>
+          <tr><td>OpenAI</td><td>Azure</td><td>GPT 5.4 及更低版本</td><td>83折</td><td></td></tr>
+          <tr><td colspan="5" class="vendor-label">GOOGLE — 83 折</td></tr>
+          <tr><td>Google</td><td>GCP</td><td>全部 Google 模型</td><td>83折</td><td></td></tr>
+          <tr><td colspan="5" class="vendor-label">其他品牌</td></tr>
+          <tr><td>Deepseek</td><td>騰訊雲</td><td>V4 / V3 系列</td><td>99折</td><td></td></tr>
+          <tr><td>字節跳動</td><td>Byteplus</td><td>seedance / seedream / doubao</td><td>平進平出</td><td></td></tr>
+          <tr><td>Alicloud</td><td>AliCloud</td><td>Qwen 系列</td><td>77折</td><td></td></tr>
+          <tr><td>Alicloud</td><td>AliCloud</td><td>Happy Horse / Wan</td><td>72折</td><td></td></tr>
+          <tr><td>Keling</td><td>Keling</td><td>Keling 3.0</td><td>83折</td><td></td></tr>
+          <tr><td>Minimax</td><td>騰訊雲</td><td>M2.5 / M2.7</td><td>88折</td><td></td></tr>
+          <tr><td>GLM（智譜）</td><td>騰訊雲</td><td>GLM-5</td><td>88折</td><td></td></tr>
+          <tr><td>Moonshot</td><td>騰訊雲 / AliCloud</td><td>Kimi k2.5 / k2.6</td><td>平進平出</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- AI Token King 螞蟻聚合平台（非原生帳號） -->
+    <div class="pricing-sub-title" style="margin-top: 32px;">方案 C ─ AI Token King 螞蟻聚合平台（非原生帳號）</div>
+    <div class="pricing-cards">
+      <div class="pricing-card anthropic">
+        <div class="vendor-name">Anthropic</div>
+        <div class="vendor-discount">客戶售價：原價 92 折 ｜ 單位：$/M tokens</div>
+        <div class="pricing-model">
+          <div class="model-name">Claude Sonnet 5</div>
+          <div class="model-price">$1.84 / $9.20 <span>輸入 / 輸出</span></div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">Claude Fable 5</div>
+          <div class="model-price">$9.20 / $46.00 <span>輸入 / 輸出</span></div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">Claude Sonnet 4.6</div>
+          <div class="model-price">$2.76 / $13.80 <span>輸入 / 輸出</span></div>
+        </div>
+      </div>
+
+      <div class="pricing-card google">
+        <div class="vendor-name">Google</div>
+        <div class="vendor-discount">客戶售價：原價 90 折 ｜ 單位：$/M tokens</div>
+        <div class="pricing-model">
+          <div class="model-name">Gemini 3.5 Flash</div>
+          <div class="model-price">$1.35 / $8.10 <span>輸入 / 輸出</span></div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">Gemini 3.1 Pro</div>
+          <div class="model-price">$1.80 / $10.80 <span>輸入 / 輸出</span></div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">Gemini 3.1 Flash-Lite</div>
+          <div class="model-price">$0.225 / $1.35 <span>輸入 / 輸出</span></div>
+        </div>
+      </div>
+    </div>
+
+    <button class="pricing-detail-toggle" onclick="document.getElementById('fullPricing').classList.toggle('open'); this.textContent = document.getElementById('fullPricing').classList.contains('open') ? '收起螞蟻聚合平台（非原生帳號）完整明細' : '展開螞蟻聚合平台（非原生帳號）完整明細';">展開螞蟻聚合平台（非原生帳號）完整明細</button>
+
+    <div class="pricing-full-table" id="fullPricing">
+      <table>
+        <thead>
+          <tr>
+            <th>模型</th>
+            <th>原價 (入/出)</th>
+            <th>客戶價 (入/出)</th>
+            <th>折扣</th>
+            <th>備註</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="5" class="vendor-label">ANTHROPIC — 92 折</td></tr>
+          <tr><td>Claude Sonnet 5</td><td>$2.00 / $10.00</td><td>$1.84 / $9.20</td><td>92折</td><td>0-1M context</td></tr>
+          <tr><td>Claude Fable 5</td><td>$10.00 / $50.00</td><td>$9.20 / $46.00</td><td>92折</td><td>0-1M context</td></tr>
+          <tr><td>Claude Opus 4.8</td><td>$5.00 / $25.00</td><td>$4.60 / $23.00</td><td>92折</td><td>0-1M context</td></tr>
+          <tr><td>Claude Opus 4.7</td><td>$5.00 / $25.00</td><td>$4.60 / $23.00</td><td>92折</td><td>0-1M context</td></tr>
+          <tr><td>Claude Opus 4.6</td><td>$5.00 / $25.00</td><td>$4.60 / $23.00</td><td>92折</td><td>0-1M context</td></tr>
+          <tr><td>Claude Sonnet 4.6</td><td>$3.00 / $15.00</td><td>$2.76 / $13.80</td><td>92折</td><td>0-1M context</td></tr>
+          <tr><td>Claude Haiku 4.5</td><td>$1.00 / $5.00</td><td>$0.92 / $4.60</td><td>92折</td><td>0-200K context</td></tr>
+          <tr><td colspan="5" class="vendor-label">GOOGLE — 90 折</td></tr>
+          <tr><td>Gemini 3.5 Flash</td><td>$1.50 / $9.00</td><td>$1.35 / $8.10</td><td>90折</td><td></td></tr>
+          <tr><td>Gemini 3.1 Flash Image</td><td>$0.50 / $3.00</td><td>$0.45 / $2.70</td><td>90折</td><td></td></tr>
+          <tr><td>Gemini 3.1 Pro</td><td>$2.00 / $12.00</td><td>$1.80 / $10.80</td><td>90折</td><td>&#8804;200K context</td></tr>
+          <tr><td>Gemini 3.1 Flash-Lite</td><td>$0.25 / $1.50</td><td>$0.225 / $1.35</td><td>90折</td><td></td></tr>
+          <tr><td>Gemini 3.1 Pro Preview</td><td>$2.00 / $12.00</td><td>$1.80 / $10.80</td><td>90折</td><td></td></tr>
+          <tr><td>Gemini 3.1 Pro Image</td><td>$2.00 / $12.00</td><td>$1.80 / $10.80</td><td>90折</td><td></td></tr>
+          <tr><td>Gemini 3 Flash Preview</td><td>$0.50 / $3.00</td><td>$0.45 / $2.70</td><td>90折</td><td></td></tr>
+          <tr><td>Gemini 3 Pro Image</td><td>$2.00 / $12.00</td><td>$1.80 / $10.80</td><td>90折</td><td></td></tr>
+          <tr><td>Nano Banana Pro</td><td>$2.00 / $12.00</td><td>$1.80 / $10.80</td><td>90折</td><td></td></tr>
+          <tr><td>Nano Banana 2</td><td>$0.50 / $3.00</td><td>$0.45 / $2.70</td><td>90折</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <footer class="page-footer">
-    具體價格與折扣請根據實際商談調整。全球無折扣模型（如 Claude 2.5 等）在三種方案下均為平進平出。<br>
-    資料來源：pricing_table.html, pricing_table_1.html, pricing_table_2.html
+    具體價格與折扣請根據實際商談調整。全球無折扣模型在三種方案下均為平進平出。<br>
+    資料更新：2026-08-25
   </footer>
 </div>
 
@@ -914,135 +1283,17 @@ document.querySelectorAll('.filter-tab').forEach(tab => {
     tab.classList.add('active');
     const filter = tab.dataset.filter;
     document.querySelectorAll('.matrix-row').forEach(row => {
-      if (filter === 'all' || row.dataset.cat === filter) {
-        row.style.display = '';
-      } else {
-        row.style.display = 'none';
+      const show = filter === 'all' || row.dataset.cat === filter;
+      row.style.display = show ? '' : 'none';
+      const detail = row.nextElementSibling;
+      if (detail && detail.classList.contains('detail-panel')) {
+        detail.style.display = show ? 'block' : 'none';
       }
     });
-    document.querySelectorAll('.detail-panel').forEach(p => {
-      p.classList.remove('open');
-    });
   });
 });
 
-// Row click to expand
-document.querySelectorAll('.matrix-row').forEach(row => {
-  row.addEventListener('click', () => {
-    const idx = row.dataset.idx;
-    const panel = document.querySelector(`[data-detail="${idx}"]`);
-    const wasOpen = panel.classList.contains('open');
-    document.querySelectorAll('.detail-panel').forEach(p => p.classList.remove('open'));
-    if (!wasOpen) panel.classList.add('open');
-  });
-});
 
-// Radar chart
-function drawRadar() {
-  const canvas = document.getElementById('radar');
-  const ctx = canvas.getContext('2d');
-  const dpr = window.devicePixelRatio || 1;
-  canvas.width = 460 * dpr;
-  canvas.height = 400 * dpr;
-  canvas.style.width = '460px';
-  canvas.style.height = '400px';
-  ctx.scale(dpr, dpr);
-
-  const cx = 230, cy = 200, r = 140;
-  const labels = ['折扣深度', '風險保障', '線路優化', '對帳透明', '帳號控制', '測試門檻'];
-  const n = labels.length;
-
-  // Scores out of 5
-  const native =    [3, 1, 1, 2, 5, 4];
-  const tokenking = [5, 3, 5, 5, 2, 5];
-  const ant =       [4, 3, 5, 3, 2, 4];
-
-  const isDark = (document.documentElement.dataset.theme === 'dark') ||
-    (!document.documentElement.dataset.theme && window.matchMedia('(prefers-color-scheme: dark)').matches);
-
-  const gridColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)';
-  const labelColor = isDark ? '#A0AEC0' : '#4A5568';
-  const axisColor = isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.1)';
-
-  ctx.clearRect(0, 0, 460, 400);
-
-  function getPoint(i, val, maxVal) {
-    const angle = (Math.PI * 2 * i / n) - Math.PI / 2;
-    const dist = (val / maxVal) * r;
-    return [cx + dist * Math.cos(angle), cy + dist * Math.sin(angle)];
-  }
-
-  // Grid rings
-  for (let ring = 1; ring <= 5; ring++) {
-    ctx.beginPath();
-    for (let i = 0; i <= n; i++) {
-      const [x, y] = getPoint(i % n, ring, 5);
-      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-    }
-    ctx.closePath();
-    ctx.strokeStyle = gridColor;
-    ctx.lineWidth = 1;
-    ctx.stroke();
-  }
-
-  // Axes
-  for (let i = 0; i < n; i++) {
-    const [x, y] = getPoint(i, 5, 5);
-    ctx.beginPath();
-    ctx.moveTo(cx, cy);
-    ctx.lineTo(x, y);
-    ctx.strokeStyle = axisColor;
-    ctx.lineWidth = 1;
-    ctx.stroke();
-  }
-
-  // Labels
-  ctx.font = '12px "Noto Sans TC", sans-serif';
-  ctx.fillStyle = labelColor;
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  for (let i = 0; i < n; i++) {
-    const angle = (Math.PI * 2 * i / n) - Math.PI / 2;
-    const lx = cx + (r + 28) * Math.cos(angle);
-    const ly = cy + (r + 28) * Math.sin(angle);
-    ctx.fillText(labels[i], lx, ly);
-  }
-
-  function drawArea(data, color, alpha) {
-    ctx.beginPath();
-    for (let i = 0; i <= n; i++) {
-      const [x, y] = getPoint(i % n, data[i % n], 5);
-      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-    }
-    ctx.closePath();
-    ctx.fillStyle = color.replace(')', `,${alpha})`).replace('rgb', 'rgba');
-    ctx.fill();
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 2;
-    ctx.stroke();
-
-    for (let i = 0; i < n; i++) {
-      const [x, y] = getPoint(i, data[i], 5);
-      ctx.beginPath();
-      ctx.arc(x, y, 4, 0, Math.PI * 2);
-      ctx.fillStyle = color;
-      ctx.fill();
-      ctx.strokeStyle = isDark ? '#1A1F2E' : '#FFFFFF';
-      ctx.lineWidth = 2;
-      ctx.stroke();
-    }
-  }
-
-  drawArea(native, 'rgb(37, 99, 235)', 0.08);
-  drawArea(ant, 'rgb(180, 83, 9)', 0.08);
-  drawArea(tokenking, 'rgb(124, 58, 237)', 0.08);
-}
-
-drawRadar();
-
-// Redraw on theme change
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', drawRadar);
-new MutationObserver(drawRadar).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 </script>
 </body>
 </html>

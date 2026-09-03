@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Cloud Service Plan Comparison</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root {
+  --ink: #111827;
+  --ink-secondary: #374151;
+  --ink-muted: #6B7280;
+  --surface: #F5F6FA;
+  --surface-card: #FFFFFF;
+  --surface-elevated: #FFFFFF;
+  --border: #E2E5ED;
+  --border-subtle: #EDF0F5;
+
+  --plan-native: #2563EB;
+  --plan-native-bg: #EFF6FF;
+  --plan-native-border: #BFDBFE;
+  --plan-tokenking: #7C3AED;
+  --plan-tokenking-bg: #F5F3FF;
+  --plan-tokenking-border: #DDD6FE;
+  --plan-ant: #B45309;
+  --plan-ant-bg: #FFFBEB;
+  --plan-ant-border: #FDE68A;
+
+  --good: #15803D;
+  --good-bg: #DCFCE7;
+  --caution: #A16207;
+  --caution-bg: #FEF9C3;
+  --risk: #B91C1C;
+  --risk-bg: #FEE2E2;
+
+  --radius: 10px;
+  --radius-sm: 6px;
+  --gap: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #E8ECF1;
+    --ink-secondary: #A0AEC0;
+    --ink-muted: #6B7A8D;
+    --surface: #0F1219;
+    --surface-card: #1A1F2E;
+    --surface-elevated: #232838;
+    --border: #2D3548;
+    --border-subtle: #252B3B;
+
+    --plan-native-bg: #1E2A4A;
+    --plan-native-border: #2563EB44;
+    --plan-tokenking-bg: #2A1F4A;
+    --plan-tokenking-border: #7C3AED44;
+    --plan-ant-bg: #2E2516;
+    --plan-ant-border: #B4530944;
+
+    --good-bg: #0D2818;
+    --caution-bg: #2A2308;
+    --risk-bg: #2D1010;
+  }
+}
+:root[data-theme="dark"] {
+  --ink: #E8ECF1;
+  --ink-secondary: #A0AEC0;
+  --ink-muted: #6B7A8D;
+  --surface: #0F1219;
+  --surface-card: #1A1F2E;
+  --surface-elevated: #232838;
+  --border: #2D3548;
+  --border-subtle: #252B3B;
+
+  --plan-native-bg: #1E2A4A;
+  --plan-native-border: #2563EB44;
+  --plan-tokenking-bg: #2A1F4A;
+  --plan-tokenking-border: #7C3AED44;
+  --plan-ant-bg: #2E2516;
+  --plan-ant-border: #B4530944;
+
+  --good-bg: #0D2818;
+  --caution-bg: #2A2308;
+  --risk-bg: #2D1010;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--surface);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  font-variant-numeric: tabular-nums;
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* Header */
+.page-header {
+  margin-bottom: 36px;
+}
+.page-header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  margin-bottom: 6px;
+}
+.page-header .subtitle {
+  font-size: 14px;
+  color: var(--ink-muted);
+  font-weight: 400;
+}
+.page-header .date {
+  font-size: 12px;
+  color: var(--ink-muted);
+  margin-top: 4px;
+}
+
+/* Plan Cards */
+.plan-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+  margin-bottom: 32px;
+}
+
+.plan-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+.plan-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+.plan-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+.plan-card.native::before { background: var(--plan-native); }
+.plan-card.tokenking::before { background: var(--plan-tokenking); }
+.plan-card.ant::before { background: var(--plan-ant); }
+
+.plan-card .plan-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.plan-card.native .plan-label { color: var(--plan-native); }
+.plan-card.tokenking .plan-label { color: var(--plan-tokenking); }
+.plan-card.ant .plan-label { color: var(--plan-ant); }
+
+.plan-card .plan-name {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+.plan-card .plan-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.plan-card .meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  padding: 2px 0;
+}
+.meta-row .meta-label {
+  color: var(--ink-secondary);
+  font-weight: 500;
+}
+.meta-row .meta-value {
+  font-weight: 600;
+  font-size: 13px;
+  text-align: right;
+}
+
+.risk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.risk-badge.high {
+  background: var(--risk-bg);
+  color: var(--risk);
+}
+.risk-badge.medium {
+  background: var(--caution-bg);
+  color: var(--caution);
+}
+.risk-badge.low {
+  background: var(--good-bg);
+  color: var(--good);
+}
+
+/* Section */
+.section {
+  margin-bottom: 32px;
+}
+.section-title {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Risk Alert */
+.risk-alert {
+  background: var(--risk-bg);
+  border: 1px solid var(--risk);
+  border-left: 4px solid var(--risk);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  margin-bottom: 32px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.risk-alert strong {
+  color: var(--risk);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+.risk-alert span {
+  color: var(--ink);
+}
+
+/* Comparison Matrix */
+.matrix {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.matrix-header {
+  display: grid;
+  grid-template-columns: 180px 1fr 1fr 1fr;
+  border-bottom: 2px solid var(--border);
+  background: var(--surface-elevated);
+}
+.matrix-header .cell {
+  padding: 16px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--ink-secondary);
+}
+.matrix-header .cell:not(:first-child) {
+  text-align: center;
+}
+.matrix-header .cell.h-native { color: var(--plan-native); }
+.matrix-header .cell.h-tokenking { color: var(--plan-tokenking); }
+.matrix-header .cell.h-ant { color: var(--plan-ant); }
+
+.matrix-row {
+  display: grid;
+  grid-template-columns: 180px 1fr 1fr 1fr;
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background 0.15s;
+}
+.matrix-row:last-child { border-bottom: none; }
+
+.matrix-row .cell {
+  padding: 16px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+.matrix-row .cell:not(:first-child) {
+  justify-content: center;
+  text-align: center;
+}
+
+.matrix-row .dim-label {
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.dim-tag {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+.dim-tag.price { background: #DBEAFE; color: #1E40AF; }
+.dim-tag.risk { background: #FEE2E2; color: #991B1B; }
+.dim-tag.tech { background: #F3E8FF; color: #6B21A8; }
+.dim-tag.support { background: #D1FAE5; color: #065F46; }
+.dim-tag.special { background: #FCE7F3; color: #9D174D; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .dim-tag.price { background: #1E3A5F; color: #93C5FD; }
+  :root:not([data-theme="light"]) .dim-tag.risk { background: #4C1515; color: #FCA5A5; }
+  :root:not([data-theme="light"]) .dim-tag.tech { background: #3B1764; color: #D8B4FE; }
+  :root:not([data-theme="light"]) .dim-tag.support { background: #064E3B; color: #6EE7B7; }
+  :root:not([data-theme="light"]) .dim-tag.special { background: #5B1340; color: #F9A8D4; }
+}
+:root[data-theme="dark"] .dim-tag.price { background: #1E3A5F; color: #93C5FD; }
+:root[data-theme="dark"] .dim-tag.risk { background: #4C1515; color: #FCA5A5; }
+:root[data-theme="dark"] .dim-tag.tech { background: #3B1764; color: #D8B4FE; }
+:root[data-theme="dark"] .dim-tag.support { background: #064E3B; color: #6EE7B7; }
+:root[data-theme="dark"] .dim-tag.special { background: #5B1340; color: #F9A8D4; }
+
+/* Score indicators */
+.score {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
+}
+.score-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.score-icon.good { background: var(--good-bg); color: var(--good); }
+.score-icon.caution { background: var(--caution-bg); color: var(--caution); }
+.score-icon.bad { background: var(--risk-bg); color: var(--risk); }
+.score-icon.neutral { background: var(--surface); color: var(--ink-muted); border: 1px solid var(--border); }
+
+/* Detail panel */
+.detail-panel {
+  display: block;
+  grid-column: 1 / -1;
+  padding: 0 16px 16px;
+}
+.detail-inner {
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+.detail-col h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+.detail-col p {
+  font-size: 13px;
+  color: var(--ink-secondary);
+  line-height: 1.7;
+}
+
+/* Radar chart */
+.radar-section {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: var(--gap);
+  align-items: start;
+}
+
+.radar-wrap {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.legend-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+.legend-card h3 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.legend-item:last-child { border-bottom: none; }
+.legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.legend-text {
+  font-size: 13px;
+  font-weight: 500;
+}
+.legend-sub {
+  font-size: 11px;
+  color: var(--ink-muted);
+  margin-top: 2px;
+}
+
+/* Recommendation */
+.rec-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+}
+.rec-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.rec-card h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.rec-card .rec-for {
+  font-size: 13px;
+  color: var(--ink-secondary);
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.rec-card ul {
+  list-style: none;
+  padding: 0;
+}
+.rec-card li {
+  font-size: 13px;
+  color: var(--ink-secondary);
+  padding: 4px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  line-height: 1.5;
+}
+.rec-card li::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--ink-muted);
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+.rec-card.native { border-top: 3px solid var(--plan-native); }
+.rec-card.tokenking { border-top: 3px solid var(--plan-tokenking); }
+.rec-card.ant { border-top: 3px solid var(--plan-ant); }
+
+/* Footer */
+.page-footer {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--ink-secondary);
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* Filter tabs */
+.filter-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.filter-tab {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background: var(--surface-card);
+  color: var(--ink-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.filter-tab:hover {
+  border-color: var(--ink-muted);
+}
+.filter-tab.active {
+  background: var(--ink);
+  color: var(--surface-card);
+  border-color: var(--ink);
+}
+
+/* Pricing section */
+.pricing-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap);
+  margin-bottom: 20px;
+}
+.pricing-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.pricing-card.anthropic::before { background: #E04D01; }
+.pricing-card.openai::before { background: #10A37F; }
+.pricing-card.google::before { background: #4285F4; }
+
+.pricing-sub-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  margin-top: 24px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+}
+.pricing-sub-title:first-child { margin-top: 0; }
+
+.pricing-cards-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+  margin-bottom: 20px;
+}
+
+.pricing-card .vendor-name {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.pricing-card .vendor-discount {
+  font-size: 12px;
+  color: var(--ink-secondary);
+  margin-bottom: 16px;
+}
+.pricing-model {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 13px;
+}
+.pricing-model:last-child { border-bottom: none; }
+.pricing-model .model-name {
+  font-weight: 600;
+  color: var(--ink);
+}
+.pricing-model .model-price {
+  font-weight: 600;
+  color: var(--ink);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.pricing-model .model-price span {
+  display: block;
+  font-size: 11px;
+  color: var(--ink-muted);
+}
+
+.pricing-detail-toggle {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 20px;
+  width: 100%;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-secondary);
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.15s;
+  font-family: inherit;
+}
+.pricing-detail-toggle:hover {
+  background: var(--surface);
+}
+
+.pricing-full-table {
+  display: none;
+  margin-top: 16px;
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.pricing-full-table.open { display: block; }
+.pricing-full-table { overflow-x: auto; }
+
+.pricing-full-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.pricing-full-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-muted);
+  letter-spacing: 0.04em;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  cursor: default;
+}
+.pricing-full-table th:hover { background: var(--surface); }
+.pricing-full-table th::after { display: none; }
+.pricing-full-table td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  font-variant-numeric: tabular-nums;
+}
+.pricing-full-table tr:last-child td { border-bottom: none; }
+.pricing-full-table .vendor-label {
+  font-weight: 600;
+  font-size: 12px;
+  padding: 8px 16px;
+  background: var(--surface);
+  color: var(--ink-muted);
+  letter-spacing: 0.03em;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .plan-cards { grid-template-columns: 1fr; }
+  .matrix-header, .matrix-row { grid-template-columns: 120px 1fr 1fr 1fr; }
+  .radar-section { grid-template-columns: 1fr; }
+  .rec-cards { grid-template-columns: 1fr; }
+  .detail-inner { grid-template-columns: 1fr; }
+  .pricing-cards { grid-template-columns: 1fr; }
+  .pricing-cards-3 { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .page { padding: 24px 16px 60px; }
+  .page-header h1 { font-size: 22px; }
+  .matrix-header, .matrix-row { grid-template-columns: 100px 1fr 1fr 1fr; }
+  .matrix-row .cell { padding: 12px 8px; font-size: 12px; }
+  .score { font-size: 0; gap: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header class="page-header">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div>
+        <h1>AI Cloud Service Plan Comparison</h1>
+        <div class="subtitle">Plan A: Official Account (AWS / GCP) vs Plan B: AI Token King (Native Account) vs Plan C: AI Token King Ant Aggregation (Non-Native)</div>
+        <div class="date">Last Updated: 2026-08-27</div>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <a href="index.html" style="font-size:13px;font-weight:600;color:var(--ink-muted);text-decoration:none;border:1px solid var(--border);padding:5px 14px;border-radius:20px;white-space:nowrap;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--ink-secondary)';this.style.color='var(--ink)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--ink-muted)'">中文</a>
+        <a href="vi.html" style="font-size:13px;font-weight:600;color:var(--ink-muted);text-decoration:none;border:1px solid var(--border);padding:5px 14px;border-radius:20px;white-space:nowrap;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--ink-secondary)';this.style.color='var(--ink)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--ink-muted)'">VI</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Risk Alert -->
+  <div class="risk-alert">
+    <strong>Official Account Plans Are Non-Refundable</strong>
+    <span>If an account is suspended by the provider (e.g., for detected distillation activity), no refund is available after the fact. Platform plans (AI Token King Native Account and AI Token King Ant Aggregation Non-Native) allow resource exchange or replacement, ensuring full utilization of prepaid credits.</span>
+  </div>
+
+  <!-- Plan Summary Cards -->
+  <div class="plan-cards">
+    <div class="plan-card native">
+      <div class="plan-label">Plan A</div>
+      <div class="plan-name">Official Account</div>
+      <div class="plan-meta">
+        <div class="meta-row">
+          <span class="meta-label">Product</span>
+          <span class="meta-value">AWS / GCP</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Discount</span>
+          <span class="meta-value">Anthropic 95%–85% / OpenAI 85%–75% of list</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Billing</span>
+          <span class="meta-value">Prepaid</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Ban Risk</span>
+          <span class="risk-badge high">High</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Account Control</span>
+          <span class="meta-value">Self-Managed</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-card tokenking">
+      <div class="plan-label">Plan B</div>
+      <div class="plan-name">AI Token King (Native Account)</div>
+      <div class="plan-meta">
+        <div class="meta-row">
+          <span class="meta-label">Platform</span>
+          <span class="meta-value">Platform Aggregation</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Discount</span>
+          <span class="meta-value">Anthropic 92% / OpenAI from 94% of list</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Billing</span>
+          <span class="meta-value">Prepaid, from $5</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Ban Risk</span>
+          <span class="risk-badge medium">Exchangeable</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Account Control</span>
+          <span class="meta-value">Platform-Managed</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-card ant">
+      <div class="plan-label">Plan C</div>
+      <div class="plan-name">AI Token King Ant Aggregation<span style="font-size:13px;font-weight:500;color:var(--ink-muted);margin-left:6px;">(Non-Native)</span></div>
+      <div class="plan-meta">
+        <div class="meta-row">
+          <span class="meta-label">Platform</span>
+          <span class="meta-value">Third-Party Aggregation</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Discount</span>
+          <span class="meta-value">Anthropic 92% / OpenAI 90% of list</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Billing</span>
+          <span class="meta-value">Prepaid</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Ban Risk</span>
+          <span class="risk-badge medium">Replaceable</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Account Control</span>
+          <span class="meta-value">Platform-Managed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comparison Matrix -->
+  <div class="section">
+    <div class="section-title">
+      <span class="dot" style="background: var(--ink)"></span>
+      Multi-Dimension Comparison Matrix
+    </div>
+
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-filter="all">All</button>
+      <button class="filter-tab" data-filter="price">Pricing</button>
+      <button class="filter-tab" data-filter="risk">Risk</button>
+      <button class="filter-tab" data-filter="tech">Technical</button>
+      <button class="filter-tab" data-filter="support">Service</button>
+    </div>
+
+    <div class="matrix" id="matrix">
+      <div class="matrix-header">
+        <div class="cell">Dimension</div>
+        <div class="cell h-native">Official Account<br><span style="font-weight:400;font-size:10px;opacity:0.7">AWS / GCP</span></div>
+        <div class="cell h-tokenking">AI Token King<br><span style="font-weight:400;font-size:10px;opacity:0.7">Native Account</span></div>
+        <div class="cell h-ant">AI Token King Ant Aggregation<br><span style="font-weight:400;font-size:10px;opacity:0.7">Non-Native</span></div>
+      </div>
+
+      <div class="matrix-row" data-cat="price" data-idx="0">
+        <div class="cell"><span class="dim-label"><span class="dim-tag price">PRICE</span>Discount Depth</span></div>
+        <div class="cell"><span class="score"><span class="score-icon caution">!</span> Medium</span></div>
+        <div class="cell"><span class="score"><span class="score-icon good">&#10003;</span> Best</span></div>
+        <div class="cell"><span class="score"><span class="score-icon good">&#10003;</span> Good</span></div>
+      </div>
+      <div class="detail-panel" data-detail="0">
+        <div class="detail-inner">
+          <div class="detail-col"><h4>Official Account</h4><p>Anthropic 95%–85% of list, OpenAI 85%–75% of list, Gemini 95%–85% of list. Discounts increase by monthly volume tier (28k / 28k–70k / 70k+ USD).</p></div>
+          <div class="detail-col"><h4>AI Token King (Native Account)</h4><p>Anthropic 92% of list, OpenAI from 94% of list (83% at 5.4 and below), Google 83% of list. Platform aggregation enables better pricing.</p></div>
+          <div class="detail-col"><h4>AI Token King Ant Aggregation (Non-Native)</h4><p>Anthropic 92% of list, OpenAI 90% of list. Platform discounts are provided per agreement; specific pricing subject to contract terms.</p></div>
+        </div>
+      </div>
+
+      <div class="matrix-row" data-cat="risk" data-idx="1">
+        <div class="cell"><span class="dim-label"><span class="dim-tag risk">RISK</span>Ban &amp; Distillation Risk</span></div>
+        <div class="cell"><span class="score"><span class="score-icon bad">&#10005;</span> No Refund</span></div>
+        <div class="cell"><span class="score"><span class="score-icon caution">&#8635;</span> Exchangeable</span></div>
+        <div class="cell"><span class="score"><span class="score-icon caution">&#8635;</span> Replaceable</span></div>
+      </div>
+      <div class="detail-panel" data-detail="1">
+        <div class="detail-inner">
+          <div class="detail-col"><h4>Official Account</h4><p>If the provider flags distillation activity, the account is immediately suspended with no refund. Suspension evidence must be provided. This is the highest risk.</p></div>
+          <div class="detail-col"><h4>AI Token King (Native Account)</h4><p>If distillation or policy violations are detected, resources can be exchanged and used until fully consumed, limiting losses.</p></div>
+          <div class="detail-col"><h4>AI Token King Ant Aggregation (Non-Native)</h4><p>If suspended or flagged for violations, the platform can replace resources, ensuring full utilization and providing a buffer.</p></div>
+        </div>
+      </div>
+
+      <div class="matrix-row" data-cat="support" data-idx="2">
+        <div class="cell"><span class="dim-label"><span class="dim-tag support">BILLING</span>Payment Method</span></div>
+        <div class="cell"><span class="score"><span class="score-icon good">&#10003;</span> Prepaid</span></div>
+        <div class="cell"><span class="score"><span class="score-icon good">&#10003;</span> Prepaid</span></div>
+        <div class="cell"><span class="score"><span class="score-icon good">&#10003;</span> Prepaid</span></div>
+      </div>
+      <div class="detail-panel" data-detail="2">
+        <div class="detail-inner">
+          <div class="detail-col"><h4>Official Account</h4><p>Prepaid deposit system; top up first, then use.</p></div>
+          <div class="detail-col"><h4>AI Token King (Native Account)</h4><p>Prepaid deposit system; start with as little as $5, extremely low barrier to entry.</p></div>
+          <div class="detail-col"><h4>AI Token King Ant Aggregation (Non-Native)</h4><p>Prepaid deposit system; top up as needed.</p></div>
+        </div>
+      </div>
+
+      <div class="matrix-row" data-cat="tech" data-idx="3">
+        <div class="cell"><span class="dim-label"><span class="dim-tag tech">NETWORK</span>Route Optimization</span></div>
+        <div class="cell"><span class="score"><span class="score-icon bad">&#10005;</span> None</span></div>
+        <div class="cell"><span class="score"><span class="score-icon good">&#10003;</span> Optimized</span></div>
+        <div class="cell"><span class="score"><span class="score-icon good">&#10003;</span> Optimized</span></div>
+      </div>
+      <div class="detail-panel" data-detail="3">
+        <div class="detail-inner">
+          <div class="detail-col"><h4>Official Account</h4><p>Accounts cannot be swapped; customers must set up their own network routes, adding cost and technical overhead.</p></div>
+          <div class="detail-col"><h4>AI Token King (Native Account)</h4><p>Uses Alibaba Cloud + Tencent Cloud; base routes are already fully optimized.</p></div>
+          <div class="detail-col"><h4>AI Token King Ant Aggregation (Non-Native)</h4><p>Domestic Ant Cloud / Alibaba Cloud with edge-point optimization, ideal for users in the region.</p></div>
+        </div>
+      </div>
+
+      <div class="matrix-row" data-cat="support" data-idx="4">
+        <div class="cell"><span class="dim-label"><span class="dim-tag support">DATA</span>Reconciliation</span></div>
+        <div class="cell"><span class="score"><span class="score-icon neutral">&#8212;</span> Self-Service</span></div>
+        <div class="cell"><span class="score"><span class="score-icon good">&#10003;</span> Real-Time</span></div>
+        <div class="cell"><span class="score"><span class="score-icon neutral">&#8212;</span> Periodic</span></div>
+      </div>
+      <div class="detail-panel" data-detail="4">
+        <div class="detail-inner">
+          <div class="detail-col"><h4>Official Account</h4><p>Self-service query only; limited to viewing Explorer / Billing Explorer for that account.</p></div>
+          <div class="detail-col"><h4>AI Token King (Native Account)</h4><p>Real-time billing with detailed billing information; start from $5/$10, supports low-volume testing.</p></div>
+          <div class="detail-col"><h4>AI Token King Ant Aggregation (Non-Native)</h4><p>Platform billing mechanism with periodic settlement statements.</p></div>
+        </div>
+      </div>
+
+      <div class="matrix-row" data-cat="tech" data-idx="5">
+        <div class="cell"><span class="dim-label"><span class="dim-tag tech">CONTROL</span>Account Ownership</span></div>
+        <div class="cell"><span class="score"><span class="score-icon good">&#10003;</span> Self-Owned</span></div>
+        <div class="cell"><span class="score"><span class="score-icon caution">!</span> Managed</span></div>
+        <div class="cell"><span class="score"><span class="score-icon caution">!</span> Managed</span></div>
+      </div>
+      <div class="detail-panel" data-detail="5">
+        <div class="detail-inner">
+          <div class="detail-col"><h4>Official Account</h4><p>Linked to the provider's Payer ID; fully customizable with complete account control.</p></div>
+          <div class="detail-col"><h4>AI Token King (Native Account)</h4><p>Platform-managed by AI Token King; cannot be independently swapped.</p></div>
+          <div class="detail-col"><h4>AI Token King Ant Aggregation (Non-Native)</h4><p>Managed by the Ant Aggregation platform; cannot be independently adjusted.</p></div>
+        </div>
+      </div>
+
+      <div class="matrix-row" data-cat="special" data-idx="6">
+        <div class="cell"><span class="dim-label"><span class="dim-tag special">SPECIAL</span>Non-Discounted Models</span></div>
+        <div class="cell"><span class="score"><span class="score-icon neutral">&#8212;</span> TBD</span></div>
+        <div class="cell"><span class="score"><span class="score-icon neutral">&#8212;</span> TBD</span></div>
+        <div class="cell"><span class="score"><span class="score-icon neutral">&#8212;</span> TBD</span></div>
+      </div>
+      <div class="detail-panel" data-detail="6">
+        <div class="detail-inner">
+          <div class="detail-col"><h4>Official Account</h4><p>Certain models (e.g., Claude 2.5) have no global discount and are offered at list price. Full list to be confirmed.</p></div>
+          <div class="detail-col"><h4>AI Token King (Native Account)</h4><p>Same as above; certain models have no discount. To be confirmed.</p></div>
+          <div class="detail-col"><h4>AI Token King Ant Aggregation (Non-Native)</h4><p>Same as above; certain models have no discount. To be confirmed.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Recommendations -->
+  <div class="section">
+    <div class="section-title">
+      <span class="dot" style="background: var(--good)"></span>
+      Recommended Use Cases
+    </div>
+    <div class="rec-cards">
+      <div class="rec-card native">
+        <h4>Official Account</h4>
+        <div class="rec-for">Best for teams requiring full control</div>
+        <ul>
+          <li>No special requirements for route quality</li>
+          <li>Need full account control and customization</li>
+          <li>Small-scale validation scenarios</li>
+          <li>Long-term, stable usage customers</li>
+          <li>Can accept the risk of no refund on suspension</li>
+        </ul>
+      </div>
+      <div class="rec-card tokenking">
+        <h4>AI Token King (Native Account)</h4>
+        <div class="rec-for">Best for teams seeking value</div>
+        <ul>
+          <li>Need the deepest discount pricing</li>
+          <li>Want to start testing quickly (from $5)</li>
+          <li>Need real-time billing and transparent invoices</li>
+          <li>Require regional network optimization</li>
+          <li>Want to minimize suspension-related losses</li>
+        </ul>
+      </div>
+      <div class="rec-card ant">
+        <h4>AI Token King Ant Aggregation (Non-Native)</h4>
+        <div class="rec-for">AI Token King Ant Aggregation Platform</div>
+        <ul>
+          <li>Need third-party aggregation platform services</li>
+          <li>Need flexible resource scheduling</li>
+          <li>Seeking long-term partnership stability</li>
+          <li>Require domestic edge-point route optimization</li>
+          <li>Want resource replacement if account is suspended</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flow -->
+  <div class="section">
+    <div class="section-title">
+      <span class="dot" style="background: var(--caution)"></span>
+      Recommended Process
+    </div>
+    <div style="background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; display: flex; align-items: center; gap: 0; flex-wrap: wrap; justify-content: center;">
+      <div style="text-align: center; padding: 12px 20px;">
+        <div style="font-size: 24px; margin-bottom: 4px;">1</div>
+        <div style="font-size: 13px; font-weight: 600;">Small-Scale Test</div>
+        <div style="font-size: 11px; color: var(--ink-muted);">Validate plan feasibility</div>
+      </div>
+      <div style="color: var(--ink-muted); font-size: 20px; padding: 0 4px;">&#8594;</div>
+      <div style="text-align: center; padding: 12px 20px;">
+        <div style="font-size: 24px; margin-bottom: 4px;">2</div>
+        <div style="font-size: 13px; font-weight: 600;">Confirm Selection</div>
+        <div style="font-size: 11px; color: var(--ink-muted);">Evaluate results and decide</div>
+      </div>
+      <div style="color: var(--ink-muted); font-size: 20px; padding: 0 4px;">&#8594;</div>
+      <div style="text-align: center; padding: 12px 20px;">
+        <div style="font-size: 24px; margin-bottom: 4px;">3</div>
+        <div style="font-size: 13px; font-weight: 600;">Medium Trial</div>
+        <div style="font-size: 11px; color: var(--ink-muted);">Scale up usage</div>
+      </div>
+      <div style="color: var(--ink-muted); font-size: 20px; padding: 0 4px;">&#8594;</div>
+      <div style="text-align: center; padding: 12px 20px;">
+        <div style="font-size: 24px; margin-bottom: 4px;">4</div>
+        <div style="font-size: 13px; font-weight: 600;">Full Deployment</div>
+        <div style="font-size: 11px; color: var(--ink-muted);">Go live at scale</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pricing -->
+  <div class="section">
+    <div class="section-title">
+      <span class="dot" style="background: var(--accent, #4F46E5)"></span>
+      Customer Pricing
+    </div>
+
+    <!-- Plan A Official Account -->
+    <div class="pricing-sub-title">Plan A &#8212; Official Account</div>
+    <div class="pricing-cards-3">
+      <div class="pricing-card anthropic">
+        <div class="vendor-name">Anthropic (Claude)</div>
+        <div class="vendor-discount">Volume-tiered discount by monthly usage (USD)</div>
+        <div class="pricing-model">
+          <div class="model-name">Under 28k</div>
+          <div class="model-price">95% of list</div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">28k–70k</div>
+          <div class="model-price">90% of list</div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">Over 70k</div>
+          <div class="model-price">85% of list</div>
+        </div>
+      </div>
+      <div class="pricing-card openai">
+        <div class="vendor-name">OpenAI (GPT)</div>
+        <div class="vendor-discount">Volume-tiered discount by monthly usage (USD)</div>
+        <div class="pricing-model">
+          <div class="model-name">Under 28k</div>
+          <div class="model-price">85% of list</div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">28k–70k</div>
+          <div class="model-price">80% of list</div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">Over 70k</div>
+          <div class="model-price">75% of list</div>
+        </div>
+      </div>
+      <div class="pricing-card google">
+        <div class="vendor-name">Gemini</div>
+        <div class="vendor-discount">Volume-tiered discount by monthly usage (USD)</div>
+        <div class="pricing-model">
+          <div class="model-name">Under 28k</div>
+          <div class="model-price">95% of list</div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">28k–70k</div>
+          <div class="model-price">90% of list</div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">Over 70k</div>
+          <div class="model-price">85% of list</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="pricing-detail-toggle" onclick="document.getElementById('fullPricingA').classList.toggle('open'); this.textContent = document.getElementById('fullPricingA').classList.contains('open') ? 'Collapse Official Account Full Details' : 'Expand Official Account Full Details';">Expand Official Account Full Details</button>
+
+    <div class="pricing-full-table" id="fullPricingA">
+      <table>
+        <thead>
+          <tr>
+            <th>Brand / Model</th>
+            <th>Low Volume</th>
+            <th>Mid Volume</th>
+            <th>High Volume</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="4" class="vendor-label">Text Models &#8212; Monthly Usage: Under 28k / 28k&#8211;70k / Over 70k (USD)</td></tr>
+          <tr><td>Claude Series</td><td>95%</td><td>90%</td><td>85%</td></tr>
+          <tr><td>GPT Series</td><td>85%</td><td>80%</td><td>75%</td></tr>
+          <tr><td>Gemini Series</td><td>95%</td><td>90%</td><td>85%</td></tr>
+          <tr><td>Grok</td><td>70%</td><td>65%</td><td>60%</td></tr>
+          <tr><td>Tongyi Qwen Series</td><td>90%</td><td>85%</td><td>80%</td></tr>
+
+          <tr><td colspan="4" class="vendor-label">Text Models &#8212; Monthly Usage: Under 200k / 200k&#8211;500k / Over 500k (USD)</td></tr>
+          <tr><td>Doubao-Seed-2.1-pro/turbo</td><td>85%</td><td>80%</td><td>75%</td></tr>
+          <tr><td>Doubao-Seed-2.0 Series</td><td>90%</td><td>85%</td><td>80%</td></tr>
+          <tr><td>Kimi-K3 (Official)</td><td>98%</td><td>100%</td><td>100%</td></tr>
+          <tr><td>Kimi-K2.7 (Cloud Provider)</td><td>90%</td><td>85%</td><td>80%</td></tr>
+          <tr><td>Kimi-K2.6 (Cloud Provider)</td><td>80%</td><td>75%</td><td>70%</td></tr>
+          <tr><td>Kimi-K2.5 (Cloud Provider)</td><td>75%</td><td>70%</td><td>65%</td></tr>
+          <tr><td>GLM 5.3 (Official)</td><td>80%</td><td>80%</td><td>75%</td></tr>
+          <tr><td>GLM 5.3 (Cloud Provider)</td><td>98%</td><td>100%</td><td>97%</td></tr>
+          <tr><td>GLM 5.2 (Cloud Provider)</td><td>70%</td><td>65%</td><td>60%</td></tr>
+          <tr><td>GLM 5.1 (Cloud Provider)</td><td>80%</td><td>75%</td><td>70%</td></tr>
+          <tr><td>GLM 5 (Cloud Provider)</td><td>70%</td><td>65%</td><td>60%</td></tr>
+          <tr><td>GLM-5V-Turbo (Official)</td><td>95%</td><td>90%</td><td>85%</td></tr>
+          <tr><td>DeepSeek V4 Pro/Flash (Cloud Provider)</td><td>85%</td><td>80%</td><td>75%</td></tr>
+          <tr><td>DeepSeek V3.2 (Cloud Provider)</td><td>70%</td><td>65%</td><td>60%</td></tr>
+          <tr><td>MiniMax-M3 / M2.7 (Official)</td><td>75%</td><td>70%</td><td>65%</td></tr>
+          <tr><td>MiniMax-M2.5 (Official)</td><td>75%</td><td>75%</td><td>70%</td></tr>
+
+          <tr><td colspan="4" class="vendor-label">Image Models &#8212; Monthly Usage: Under 28k / 28k&#8211;70k / Over 70k (USD)</td></tr>
+          <tr><td>GPT-image Series</td><td>60%</td><td>55%</td><td>50%</td></tr>
+          <tr><td>Doubao-Seedream Series</td><td>100%</td><td>100%</td><td>95%</td></tr>
+          <tr><td>Nano-Banana Series</td><td>60%</td><td>55%</td><td>50%</td></tr>
+
+          <tr><td colspan="4" class="vendor-label">Video Models &#8212; Monthly Usage: Under 28k / 28k&#8211;70k / Over 70k (USD)</td></tr>
+          <tr><td>Wanx Video Series</td><td>80%</td><td>75%</td><td>70%</td></tr>
+          <tr><td>Google Veo Series</td><td>100%</td><td>95%</td><td>90%</td></tr>
+          <tr><td>Vidu Video Series</td><td>80%</td><td>75%</td><td>70%</td></tr>
+          <tr><td>Kling Video Series</td><td>80%</td><td>75%</td><td>70%</td></tr>
+
+          <tr><td colspan="4" class="vendor-label">Video Models &#8212; Monthly Usage: Under 200k / 200k&#8211;500k / Over 500k (USD)</td></tr>
+          <tr><td>Seedance 2.5 (Prepaid Required)</td><td>98%</td><td>96%</td><td>94%</td></tr>
+          <tr><td>Seedance 2.0 (Prepaid Required)</td><td>98%</td><td>95%</td><td>93%</td></tr>
+          <tr><td>Seedance 2.0 Fast (Postpaid Available)</td><td>95%</td><td>90%</td><td>85%</td></tr>
+          <tr><td>Seedance 2.0 Mini (Postpaid Available)</td><td>65%</td><td>60%</td><td>55%</td></tr>
+
+          <tr><td colspan="4" class="vendor-label">Reverse Models &#8212; Monthly Usage: Under 14k / 14k&#8211;42k / Over 42k (USD)</td></tr>
+          <tr><td>Claude Text (Reverse)</td><td>60%</td><td>55%</td><td>50%</td></tr>
+          <tr><td>GPT Text (Reverse)</td><td>60%</td><td>55%</td><td>50%</td></tr>
+          <tr><td>Gemini Text (Reverse)</td><td>60%</td><td>55%</td><td>50%</td></tr>
+          <tr><td>Nano-Banana Image (Reverse)</td><td>60%</td><td>55%</td><td>50%</td></tr>
+          <tr><td>GPT-image Image (Reverse)</td><td>60%</td><td>55%</td><td>50%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- AI Token King -->
+    <div class="pricing-sub-title" style="margin-top: 32px;">Plan B &#8212; AI Token King (Native Account)</div>
+    <div class="pricing-cards-3">
+      <div class="pricing-card anthropic">
+        <div class="vendor-name">Anthropic</div>
+        <div class="vendor-discount">Customer Price: 92% of list</div>
+        <div class="pricing-model">
+          <div class="model-name">Claude Sonnet 5</div>
+          <div class="model-price">92% <span>4.7 and below</span></div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">Claude Fable 5</div>
+          <div class="model-price">92% <span>4.7 and below</span></div>
+        </div>
+      </div>
+      <div class="pricing-card openai">
+        <div class="vendor-name">OpenAI</div>
+        <div class="vendor-discount">Customer Price | Azure</div>
+        <div class="pricing-model">
+          <div class="model-name">GPT 5.5 and above</div>
+          <div class="model-price">94%</div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">GPT 5.4 and below</div>
+          <div class="model-price">83%</div>
+        </div>
+      </div>
+      <div class="pricing-card google">
+        <div class="vendor-name">Google</div>
+        <div class="vendor-discount">Customer Price | GCP</div>
+        <div class="pricing-model">
+          <div class="model-name">All Google Models</div>
+          <div class="model-price">83%</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="pricing-detail-toggle" onclick="document.getElementById('fullPricingTK').classList.toggle('open'); this.textContent = document.getElementById('fullPricingTK').classList.contains('open') ? 'Collapse AI Token King (Native Account) Full Details' : 'Expand AI Token King (Native Account) Full Details';">Expand AI Token King (Native Account) Full Details</button>
+
+    <div class="pricing-full-table" id="fullPricingTK">
+      <table>
+        <thead>
+          <tr>
+            <th>Brand</th>
+            <th>Cloud</th>
+            <th>Model</th>
+            <th>Discount</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="5" class="vendor-label">ANTHROPIC &#8212; 92%</td></tr>
+          <tr><td>Claude</td><td>AWS</td><td>All Claude Models</td><td>92%</td><td></td></tr>
+          <tr><td colspan="5" class="vendor-label">OPENAI</td></tr>
+          <tr><td>OpenAI</td><td>Azure</td><td>GPT 5.5 and above</td><td>94%</td><td></td></tr>
+          <tr><td>OpenAI</td><td>Azure</td><td>GPT 5.4 and below</td><td>83%</td><td></td></tr>
+          <tr><td colspan="5" class="vendor-label">GOOGLE &#8212; 83%</td></tr>
+          <tr><td>Google</td><td>GCP</td><td>All Google Models</td><td>83%</td><td></td></tr>
+          <tr><td colspan="5" class="vendor-label">Other Brands</td></tr>
+          <tr><td>Deepseek</td><td>Tencent Cloud</td><td>V4 / V3 Series</td><td>99%</td><td></td></tr>
+          <tr><td>ByteDance</td><td>Byteplus</td><td>seedance / seedream / doubao</td><td>At list price</td><td></td></tr>
+          <tr><td>Alicloud</td><td>AliCloud</td><td>Qwen Series</td><td>77%</td><td></td></tr>
+          <tr><td>Alicloud</td><td>AliCloud</td><td>Happy Horse / Wan</td><td>72%</td><td></td></tr>
+          <tr><td>Keling</td><td>Keling</td><td>Keling 3.0</td><td>83%</td><td></td></tr>
+          <tr><td>Minimax</td><td>Tencent Cloud</td><td>M2.5 / M2.7</td><td>88%</td><td></td></tr>
+          <tr><td>GLM (Zhipu)</td><td>Tencent Cloud</td><td>GLM-5</td><td>88%</td><td></td></tr>
+          <tr><td>Moonshot</td><td>Tencent Cloud / AliCloud</td><td>Kimi k2.5 / k2.6</td><td>At list price</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- AI Token King Ant Aggregation (Non-Native) -->
+    <div class="pricing-sub-title" style="margin-top: 32px;">Plan C &#8212; AI Token King Ant Aggregation (Non-Native)</div>
+    <div class="pricing-cards">
+      <div class="pricing-card anthropic">
+        <div class="vendor-name">Anthropic</div>
+        <div class="vendor-discount">Customer Price: 92% of list | Unit: $/M tokens</div>
+        <div class="pricing-model">
+          <div class="model-name">Claude Sonnet 5</div>
+          <div class="model-price">$1.84 / $9.20 <span>Input / Output</span></div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">Claude Fable 5</div>
+          <div class="model-price">$9.20 / $46.00 <span>Input / Output</span></div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">Claude Sonnet 4.6</div>
+          <div class="model-price">$2.76 / $13.80 <span>Input / Output</span></div>
+        </div>
+      </div>
+
+      <div class="pricing-card google">
+        <div class="vendor-name">Google</div>
+        <div class="vendor-discount">Customer Price: 90% of list | Unit: $/M tokens</div>
+        <div class="pricing-model">
+          <div class="model-name">Gemini 3.5 Flash</div>
+          <div class="model-price">$1.35 / $8.10 <span>Input / Output</span></div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">Gemini 3.1 Pro</div>
+          <div class="model-price">$1.80 / $10.80 <span>Input / Output</span></div>
+        </div>
+        <div class="pricing-model">
+          <div class="model-name">Gemini 3.1 Flash-Lite</div>
+          <div class="model-price">$0.225 / $1.35 <span>Input / Output</span></div>
+        </div>
+      </div>
+    </div>
+
+    <button class="pricing-detail-toggle" onclick="document.getElementById('fullPricing').classList.toggle('open'); this.textContent = document.getElementById('fullPricing').classList.contains('open') ? 'Collapse Ant Aggregation (Non-Native) Full Details' : 'Expand Ant Aggregation (Non-Native) Full Details';">Expand Ant Aggregation (Non-Native) Full Details</button>
+
+    <div class="pricing-full-table" id="fullPricing">
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>List Price (In/Out)</th>
+            <th>Customer Price (In/Out)</th>
+            <th>Discount</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="5" class="vendor-label">ANTHROPIC &#8212; 92%</td></tr>
+          <tr><td>Claude Sonnet 5</td><td>$2.00 / $10.00</td><td>$1.84 / $9.20</td><td>92%</td><td>0-1M context</td></tr>
+          <tr><td>Claude Fable 5</td><td>$10.00 / $50.00</td><td>$9.20 / $46.00</td><td>92%</td><td>0-1M context</td></tr>
+          <tr><td>Claude Opus 4.8</td><td>$5.00 / $25.00</td><td>$4.60 / $23.00</td><td>92%</td><td>0-1M context</td></tr>
+          <tr><td>Claude Opus 4.7</td><td>$5.00 / $25.00</td><td>$4.60 / $23.00</td><td>92%</td><td>0-1M context</td></tr>
+          <tr><td>Claude Opus 4.6</td><td>$5.00 / $25.00</td><td>$4.60 / $23.00</td><td>92%</td><td>0-1M context</td></tr>
+          <tr><td>Claude Sonnet 4.6</td><td>$3.00 / $15.00</td><td>$2.76 / $13.80</td><td>92%</td><td>0-1M context</td></tr>
+          <tr><td>Claude Haiku 4.5</td><td>$1.00 / $5.00</td><td>$0.92 / $4.60</td><td>92%</td><td>0-200K context</td></tr>
+          <tr><td colspan="5" class="vendor-label">GOOGLE &#8212; 90%</td></tr>
+          <tr><td>Gemini 3.5 Flash</td><td>$1.50 / $9.00</td><td>$1.35 / $8.10</td><td>90%</td><td></td></tr>
+          <tr><td>Gemini 3.1 Flash Image</td><td>$0.50 / $3.00</td><td>$0.45 / $2.70</td><td>90%</td><td></td></tr>
+          <tr><td>Gemini 3.1 Pro</td><td>$2.00 / $12.00</td><td>$1.80 / $10.80</td><td>90%</td><td>&#8804;200K context</td></tr>
+          <tr><td>Gemini 3.1 Flash-Lite</td><td>$0.25 / $1.50</td><td>$0.225 / $1.35</td><td>90%</td><td></td></tr>
+          <tr><td>Gemini 3.1 Pro Preview</td><td>$2.00 / $12.00</td><td>$1.80 / $10.80</td><td>90%</td><td></td></tr>
+          <tr><td>Gemini 3.1 Pro Image</td><td>$2.00 / $12.00</td><td>$1.80 / $10.80</td><td>90%</td><td></td></tr>
+          <tr><td>Gemini 3 Flash Preview</td><td>$0.50 / $3.00</td><td>$0.45 / $2.70</td><td>90%</td><td></td></tr>
+          <tr><td>Gemini 3 Pro Image</td><td>$2.00 / $12.00</td><td>$1.80 / $10.80</td><td>90%</td><td></td></tr>
+          <tr><td>Nano Banana Pro</td><td>$2.00 / $12.00</td><td>$1.80 / $10.80</td><td>90%</td><td></td></tr>
+          <tr><td>Nano Banana 2</td><td>$0.50 / $3.00</td><td>$0.45 / $2.70</td><td>90%</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    Actual pricing and discounts are subject to negotiation. Globally non-discounted models are offered at list price across all three plans.<br>
+    AI Token King &middot; Cloud Service Plan Comparison &middot; Last Updated: 2026-08-27
+  </footer>
+</div>
+
+<script>
+// Filter tabs
+document.querySelectorAll('.filter-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const filter = tab.dataset.filter;
+    document.querySelectorAll('.matrix-row').forEach(row => {
+      const show = filter === 'all' || row.dataset.cat === filter;
+      row.style.display = show ? '' : 'none';
+      const detail = row.nextElementSibling;
+      if (detail && detail.classList.contains('detail-panel')) {
+        detail.style.display = show ? 'block' : 'none';
+      }
+    });
+  });
+});
+
+
+</script>
+</body>
+</html>
