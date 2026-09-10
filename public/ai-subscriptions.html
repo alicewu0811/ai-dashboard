@@ -108,11 +108,13 @@ tbody tr:hover{background:var(--highlight-row)}
 .api-card.openai .api-card-header{background:var(--openai-bg);color:var(--openai-color)}
 .api-card.claude .api-card-header{background:var(--claude-bg);color:var(--claude-color)}
 .api-card.gemini .api-card-header{background:var(--gemini-bg);color:var(--gemini-color)}
-.api-table{width:100%;border-collapse:collapse;font-size:12px}
-.api-table th{padding:8px 14px;text-align:left;background:var(--bg);font-weight:600;font-size:11px;color:var(--text-sec);text-transform:uppercase}
-.api-table td{padding:8px 14px;border-bottom:1px solid var(--border-lt)}
-.api-table .model-name{font-weight:600;color:var(--text)}
-.api-table .price-val{font-weight:700;color:var(--primary)}
+.api-table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
+.api-table th{padding:8px 10px;text-align:left;background:var(--bg);font-weight:600;font-size:11px;color:var(--text-sec);text-transform:uppercase}
+.api-table td{padding:8px 10px;border-bottom:1px solid var(--border-lt)}
+.api-table .model-name{font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.api-table .price-val{font-weight:700;color:var(--primary);white-space:nowrap}
+.api-table col.col-model{width:50%}
+.api-table col.col-price{width:25%}
 .new-badge{font-size:9px;background:var(--error);color:#fff;padding:1px 5px;border-radius:3px;margin-left:5px;font-weight:700}
 
 /* === Insights === */
@@ -347,6 +349,7 @@ tbody tr:hover{background:var(--highlight-row)}
   <div class="api-card openai">
     <div class="api-card-header">OpenAI API</div>
     <table class="api-table">
+      <colgroup><col class="col-model"><col class="col-price"><col class="col-price"></colgroup>
       <thead><tr><th>模型</th><th>輸入</th><th>輸出</th></tr></thead>
       <tbody>
         <tr><td class="model-name">GPT-6 Astra <span class="new-badge">NEW</span></td><td class="price-val">$10.00</td><td class="price-val">$50.00</td></tr>
@@ -362,6 +365,7 @@ tbody tr:hover{background:var(--highlight-row)}
   <div class="api-card claude">
     <div class="api-card-header">Anthropic Claude API</div>
     <table class="api-table">
+      <colgroup><col class="col-model"><col class="col-price"><col class="col-price"></colgroup>
       <thead><tr><th>模型</th><th>輸入</th><th>輸出</th></tr></thead>
       <tbody>
         <tr><td class="model-name">Fable 5.1 <span class="new-badge">旗艦</span></td><td class="price-val">$10.00</td><td class="price-val">$50.00</td></tr>
@@ -376,6 +380,7 @@ tbody tr:hover{background:var(--highlight-row)}
   <div class="api-card gemini">
     <div class="api-card-header">Google Gemini API</div>
     <table class="api-table">
+      <colgroup><col class="col-model"><col class="col-price"><col class="col-price"></colgroup>
       <thead><tr><th>模型</th><th>輸入</th><th>輸出</th></tr></thead>
       <tbody>
         <tr><td class="model-name">3.8 Flash <span class="new-badge">促銷</span></td><td class="price-val">$0.75</td><td class="price-val">$3.75</td></tr>
@@ -476,6 +481,25 @@ tbody tr:hover{background:var(--highlight-row)}
     <p>從 $7.99 降至 $4.99，儲存加倍至 400GB。</p>
   </div>
 </div>
+
+<h2 class="section-title">資料來源（官方連結）</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>供應商</th><th>類別</th><th>官方頁面</th></tr></thead>
+<tbody>
+  <tr><td><span class="provider-badge openai">OpenAI</span></td><td>訂閱方案</td><td><a href="https://openai.com/chatgpt/pricing/" target="_blank" rel="noopener">openai.com/chatgpt/pricing</a></td></tr>
+  <tr><td><span class="provider-badge openai">OpenAI</span></td><td>API 定價</td><td><a href="https://openai.com/api/pricing/" target="_blank" rel="noopener">openai.com/api/pricing</a></td></tr>
+  <tr><td><span class="provider-badge openai">OpenAI</span></td><td>Business 方案</td><td><a href="https://openai.com/chatgpt/team/" target="_blank" rel="noopener">openai.com/chatgpt/team</a></td></tr>
+  <tr><td><span class="provider-badge claude">Claude</span></td><td>訂閱方案</td><td><a href="https://claude.ai/pricing" target="_blank" rel="noopener">claude.ai/pricing</a></td></tr>
+  <tr><td><span class="provider-badge claude">Claude</span></td><td>API 定價</td><td><a href="https://www.anthropic.com/pricing" target="_blank" rel="noopener">anthropic.com/pricing</a></td></tr>
+  <tr><td><span class="provider-badge claude">Claude</span></td><td>Team / Enterprise</td><td><a href="https://claude.ai/teams" target="_blank" rel="noopener">claude.ai/teams</a></td></tr>
+  <tr><td><span class="provider-badge gemini">Google</span></td><td>個人訂閱</td><td><a href="https://one.google.com/about/ai-premium" target="_blank" rel="noopener">one.google.com/about/ai-premium</a></td></tr>
+  <tr><td><span class="provider-badge gemini">Google</span></td><td>API 定價</td><td><a href="https://ai.google.dev/pricing" target="_blank" rel="noopener">ai.google.dev/pricing</a></td></tr>
+  <tr><td><span class="provider-badge gemini">Google</span></td><td>Workspace 方案</td><td><a href="https://workspace.google.com/pricing" target="_blank" rel="noopener">workspace.google.com/pricing</a></td></tr>
+</tbody>
+</table>
+</div>
+<p class="compare-note">請以各官方網站最新公告為準。本 Dashboard 資料彙整自上述官方來源，更新至 2026 年 9 月。</p>
 
 </div><!-- panel-insights -->
 
