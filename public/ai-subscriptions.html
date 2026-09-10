@@ -100,6 +100,17 @@ tbody tr:hover{background:var(--highlight-row)}
 .feat-limited{color:var(--accent);font-weight:500}
 .highlight-best{background:#F0FFF4 !important}
 
+/* === Crown / Winner highlights === */
+.crown{font-size:14px;margin-right:3px;vertical-align:middle}
+.winner-openai{background:var(--openai-bg) !important;border-left:3px solid var(--openai-color)}
+.winner-claude{background:var(--claude-bg) !important;border-left:3px solid var(--claude-color)}
+.winner-gemini{background:var(--gemini-bg) !important;border-left:3px solid var(--gemini-color)}
+.winner-tie{background:var(--highlight-row) !important;border-left:3px solid var(--accent)}
+.winner-label{display:inline-block;font-size:10px;font-weight:700;padding:1px 6px;border-radius:3px;margin-left:4px;vertical-align:middle}
+.winner-label.openai{background:var(--openai-color);color:#fff}
+.winner-label.claude{background:var(--claude-color);color:#fff}
+.winner-label.gemini{background:var(--gemini-color);color:#fff}
+
 /* === API Pricing === */
 .api-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:32px}
 @media(max-width:900px){.api-grid{grid-template-columns:1fr}}
@@ -226,12 +237,12 @@ tbody tr:hover{background:var(--highlight-row)}
   <tr><th>價位</th><th>OpenAI (ChatGPT)</th><th>Anthropic (Claude)</th><th>Google (Gemini)</th><th>重點差異</th></tr>
 </thead>
 <tbody>
-  <tr><td class="price-cell">免費</td><td>ChatGPT Free<br><small>GPT-4o｜含廣告</small></td><td>Claude Free<br><small>基本模型｜每日限額</small></td><td>Gemini Free<br><small>基本模型｜有限用量</small></td><td><small>OpenAI 免費版已加入廣告</small></td></tr>
-  <tr><td class="price-cell">~$5/月</td><td class="feat-no">—</td><td class="feat-no">—</td><td>AI Plus $4.99<br><small>128K 上下文｜含廣告</small></td><td class="highlight-best"><small>僅 Google 有此低價位，含 400GB 儲存</small></td></tr>
-  <tr><td class="price-cell">~$8/月</td><td>Go $8<br><small>GPT-5.2 Instant｜含廣告</small></td><td class="feat-no">—</td><td class="feat-no">—</td><td><small>僅 OpenAI 有此價位（含廣告）</small></td></tr>
-  <tr style="background:var(--highlight-row)"><td class="price-cell">$20/月</td><td>Plus $20<br><small>無廣告｜Agent 模式<br>Deep Research</small></td><td>Pro $20<br><small>Claude Code｜200K 上下文<br>延伸推理模型</small></td><td>AI Pro $19.99<br><small>Gemini 3.1 Pro｜Deep Research<br>2TB 儲存</small></td><td><small>三家核心戰場，功能最完整</small></td></tr>
-  <tr><td class="price-cell">$100/月</td><td>Pro $100<br><small>5x 用量｜優先運算</small></td><td>Max 5x $100<br><small>5x/5hr｜優先存取</small></td><td>AI Ultra 5x $99.99<br><small>5x 用量｜Deep Think<br>Veo 3.1 影片生成</small></td><td><small>Google 含影片生成為最大差異</small></td></tr>
-  <tr><td class="price-cell">$200/月</td><td>Pro $200<br><small>20x 用量｜GPT-5.5 Pro 獨占<br>250 次 Deep Research</small></td><td>Max 20x $200<br><small>20x/5hr（~900 則）<br>最高優先權</small></td><td>AI Ultra 20x $199.99<br><small>20x 用量<br>25,000 Flow Credits</small></td><td><small>OpenAI 獨占模型；Google 給最多 Credits</small></td></tr>
+  <tr class="winner-claude"><td class="price-cell">免費</td><td>ChatGPT Free<br><small>GPT-4o｜含廣告</small></td><td><span class="crown">👑</span>Claude Free<br><small>基本模型｜每日限額｜<strong>無廣告</strong></small><span class="winner-label claude">最佳</span></td><td>Gemini Free<br><small>基本模型｜有限用量</small></td><td><small>Claude 免費版無廣告，OpenAI 含廣告</small></td></tr>
+  <tr class="winner-gemini"><td class="price-cell">~$5/月</td><td class="feat-no">—</td><td class="feat-no">—</td><td><span class="crown">👑</span>AI Plus $4.99<br><small>128K 上下文｜400GB 儲存</small><span class="winner-label gemini">獨佔</span></td><td><small>僅 Google 有此低價位，含 400GB 儲存</small></td></tr>
+  <tr class="winner-openai"><td class="price-cell">~$8/月</td><td><span class="crown">👑</span>Go $8<br><small>GPT-5.2 Instant｜含廣告</small><span class="winner-label openai">獨佔</span></td><td class="feat-no">—</td><td class="feat-no">—</td><td><small>僅 OpenAI 有此價位（含廣告）</small></td></tr>
+  <tr class="winner-tie"><td class="price-cell">$20/月</td><td>Plus $20<br><small>無廣告｜Agent 模式<br>Deep Research</small></td><td><span class="crown">👑</span>Pro $20<br><small>Claude Code｜<strong>200K 上下文</strong><br>延伸推理模型</small><span class="winner-label claude">開發者首選</span></td><td>AI Pro $19.99<br><small>Gemini 3.1 Pro｜Deep Research<br><strong>2TB 儲存</strong></small><span class="winner-label gemini">CP值</span></td><td><small>Claude 開發者最強；Google 附贈儲存最多；三家核心戰場</small></td></tr>
+  <tr class="winner-gemini"><td class="price-cell">$100/月</td><td>Pro $100<br><small>5x 用量｜優先運算</small></td><td>Max 5x $100<br><small>5x/5hr｜優先存取</small></td><td><span class="crown">👑</span>AI Ultra 5x $99.99<br><small>5x 用量｜Deep Think<br><strong>Veo 3.1 影片生成</strong></small><span class="winner-label gemini">最佳</span></td><td><small>Google 含影片生成 + 10,000 Flow Credits 為最大差異</small></td></tr>
+  <tr class="winner-openai"><td class="price-cell">$200/月</td><td><span class="crown">👑</span>Pro $200<br><small>20x 用量｜<strong>GPT-5.5 Pro 獨占</strong><br>250 次 Deep Research</small><span class="winner-label openai">最佳</span></td><td>Max 20x $200<br><small>20x/5hr（~900 則）<br>最高優先權</small></td><td>AI Ultra 20x $199.99<br><small>20x 用量<br>25,000 Flow Credits</small></td><td><small>OpenAI 獨占旗艦模型 + 最多 Deep Research</small></td></tr>
 </tbody>
 </table>
 </div>
